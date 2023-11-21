@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background for unselected state -->
+    <item android:drawable="@color/button_unselected_bg" />
+
+    <!-- Border for the selected state -->
+    <item
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp"
+        android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/button_selected_bg" />
+        </shape>
+    </item>
+</layer-list>
+
+

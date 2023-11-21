@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:diagonal="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/twitter"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/linkedin"
+                app:layout_constraintTop_toBottomOf="@+id/bio"
+                android:background="@color/card_blue"
+                android:backgroundTint="@color/card_blue">
+
+                <TextView
+                    android:id="@+id/twittertext"
+                    android:layout_width="30dp"
+                    android:background="@drawable/twitter"
+                    android:layout_height="30dp" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/linkedin"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/insta"
+                app:layout_constraintTop_toBottomOf="@+id/bio"
+                android:background="@color/card_blue"
+                android:backgroundTint="@color/card_blue">
+
+                <TextView
+                    android:id="@+id/linkedintext"
+                    android:layout_width="30dp"
+                    android:background="@drawable/linkedin"
+                    android:layout_height="30dp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fb"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bio"
+                android:background="@color/card_blue"
+                android:backgroundTint="@color/card_blue">
+
+                <TextView
+                    android:id="@+id/fbtext"
+                    android:layout_width="30dp"
+                    android:background="@drawable/facebook"
+                    android:layout_height="30dp" />
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@id/insta"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/fb"
+                app:layout_constraintTop_toBottomOf="@+id/bio"
+                android:background="@color/card_blue"
+                android:backgroundTint="@color/red">
+
+                <TextView
+                    android:id="@+id/instatext"
+                    android:layout_width="30dp"
+                    android:background="@drawable/instagram"
+                    android:layout_height="30dp" />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/followerid2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="48dp"
+                android:visibility="gone"
+                diagonal:layout_constraintEnd_toEndOf="parent"
+                diagonal:layout_constraintTop_toBottomOf="@+id/coverpic" />
+
+            <TextView
+                android:id="@+id/Username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+
+                android:text="Blanklearn"
+                android:textColor="#0521BB"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profilepic" />
+
+            <TextView
+                android:id="@+id/followid"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profilepic" />
+
+            <ImageView
+                android:id="@+id/coverpic"
+                android:layout_width="match_parent"
+                android:layout_height="160sp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/lavkushbind" />
+
+            <ImageView
+                android:id="@+id/cha"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/profilepic"
+                app:layout_constraintStart_toEndOf="@+id/profilepic"
+                app:layout_constraintTop_toBottomOf="@+id/coverpic"
+                app:layout_constraintVertical_bias="0.555"
+                diagonal:srcCompat="@drawable/camera" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilepic"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:layout_marginTop="120dp"
+                android:padding="2sp"
+                android:src="@drawable/profileuser"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="1sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/coverpic" />
+
+            <ImageView
+                android:id="@+id/changecp"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_marginTop="140sp"
+
+
+                android:layout_marginEnd="32sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                diagonal:srcCompat="@drawable/camera" />
+
+
+            <TextView
+                android:id="@+id/emailtext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:text="m"
+                android:textColor="#060606"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Username" />
+
+            <TextView
+                android:id="@+id/bio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="#060606"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profesiontext" />
+
+            <TextView
+                android:id="@+id/profesiontext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="l"
+                android:textColor="#060606"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/twitter" />
+
+            <ImageView
+                android:id="@+id/editpro"
+                android:layout_width="24dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coverpic"
+                diagonal:srcCompat="@drawable/edit" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ProRV"
+                android:layout_width="43dp"
+                android:layout_height="201dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bio" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

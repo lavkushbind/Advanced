@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android' version '1.8.10'
+}
+
+android {
+    namespace 'com.blank_learn.dark'
+    compileSdk 33
+    buildFeatures {
+        viewBinding true
+    }
+    defaultConfig {
+        applicationId "com.blank_learn.dark"
+        minSdk 22
+        targetSdk 33
+        versionCode  12
+        versionName "8.4"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildToolsVersion '32.0.0'
+}
+
+dependencies {
+
+//    implementation 'io.supercharge:shimmerlayout:2.1.0'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.7'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.1'
+    implementation 'com.github.kittinunf.fuel:fuel:2.3.0'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.18.7'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.7'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'androidx.appcompat:appcompat-resources:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-auth:22.0.0'
+    implementation 'com.google.firebase:firebase-storage:20.2.0'
+    implementation 'com.google.firebase:firebase-database:20.2.2'
+    implementation 'com.google.firebase:firebase-firestore:24.6.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'androidx.activity:activity:1.7.2'
+    implementation 'androidx.core:core-ktx:1.10.1'
+
+//    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+
+
+
+}
