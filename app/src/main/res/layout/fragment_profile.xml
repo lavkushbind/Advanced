@@ -297,7 +297,6 @@
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
                 android:shadowColor="@color/white"
-                android:shadowRadius="20dp"
                 android:text="Upload your course"
                 android:textColor="@color/white"
                 android:textSize="15dp"

@@ -3,7 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+//        maven { url 'https://jitpack.io' }
         // jcenter()
 
 
@@ -14,6 +14,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+
+        // e.g this is how you would add jitpack
+        maven { url "https://jitpack.io" }
     }
 }
 rootProject.name = "Dark"

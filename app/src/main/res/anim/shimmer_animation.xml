@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Shimmer effect using the drawable -->
     <translate
         android:fromXDelta="-100%p"
         android:toXDelta="100%p"
         android:duration="1000"
-        android:repeatCount="infinite"
-        android:interpolator="@android:anim/linear_interpolator" />
+        android:repeatCount="infinite"/>
 </set>
