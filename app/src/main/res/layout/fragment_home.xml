@@ -11,9 +11,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -22,57 +23,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <ImageView
-                android:id="@+id/imageView15"
+                android:id="@+id/poster"
                 android:layout_width="match_parent"
-
-
                 android:layout_height="130dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
+                android:minHeight="0dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postnow"
-                app:srcCompat="@drawable/lavkushbind"
+                app:srcCompat="@drawable/homelou"
                 tools:ignore="MissingConstraints" />
-
-
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="164dp"
-                android:layout_marginEnd="116dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/notification" />
 
             <TextView
                 android:id="@+id/textView25"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:maxWidth="350dp"
+                android:layout_marginTop="32dp"
+                android:maxWidth="200dp"
                 android:maxLines="1"
-                android:text=" Andure avind"
                 android:textColor="@color/white"
                 android:textSize="24dp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/greetingTextView" />
+                app:layout_constraintEnd_toStartOf="@+id/imageView15"
+                app:layout_constraintStart_toEndOf="@+id/greetingTextView"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Top_teacher_rv"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:background="#03132B"
-                android:backgroundTint="#03132B"
+                android:background="#0A0D1C"
+                android:backgroundTint="#0A0D1C"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,55 +71,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:padding="10dp"
                 android:text="Most populor course"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+                app:layout_constraintTop_toBottomOf="@+id/poster" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
+
                 android:layout_marginEnd="4dp"
-                android:backgroundTint="#03132B"
+                android:background="@drawable/homelou"
+                android:backgroundTint="#0A0D1C"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView25">
+                app:layout_constraintTop_toBottomOf="@+id/textView52">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_centerInParent="false"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <LinearLayout
-                        android:id="@+id/indicator_layout"
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view_pager" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorEnabled="true"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                    app:sliderIndicatorUnselectedColor="#FFF"
+                    app:sliderScrollTimeInSec="1" />
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -140,12 +120,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
 
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="200dp"
-                android:background="#03132B"
+                android:background="#0A0D1C"
+                android:backgroundTint="#0A0D1C"
                 android:maxHeight="1200dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView49" />
@@ -155,13 +133,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:padding="10dp"
                 android:text="Trending Course"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Top_teacher_rv" />
+                app:layout_constraintTop_toBottomOf="@+id/StoryRV" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/postnow"
@@ -169,7 +147,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="#03132B"
+                android:background="#0A0D1C"
+                android:backgroundTint="#0A0D1C"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -186,40 +165,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postRV" />
 
-            <ImageView
-                android:id="@+id/imageView17"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView18"
-                app:srcCompat="@drawable/homelou" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilepic2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
                 android:padding="1sp"
-                android:src="@drawable/facebook"
+                android:src="@drawable/userprofile"
+                android:visibility="gone"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/greetingTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
-                android:text="Good morning 👋 "
+                android:text="Hello👋 , "
                 android:textColor="#EEEFF5"
-                android:textSize="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/profilepic2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -227,13 +197,66 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/edit_text_background"
+                android:padding="10dp"
                 android:text="Top Mentor"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/StoryRV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text=" Transform learning into an interactive adventure"
+                android:textColor="#FFC107"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+              <TextView
+                android:id="@+id/textView56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:padding="10dp"
+                android:text="Highlights"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+
+                android:textStyle="bold"
+
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/stat_notify_chat" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

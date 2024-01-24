@@ -2,4 +2,7 @@
 <resources>
     <dimen name="_40sdp" />
     <dimen name="sp" />
+    <dimen name="video_width">120dp</dimen>
+    <dimen name="video_height">230dp</dimen>
+
 </resources>

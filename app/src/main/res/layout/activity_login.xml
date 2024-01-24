@@ -5,7 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+
    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,12 +42,12 @@
         <EditText
             android:id="@+id/emaillbnt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_background"
             android:hint="Enter your email"
-            android:background="@drawable/corner"
             android:paddingLeft="20sp"
 
             android:textColor="@color/black"
@@ -44,12 +58,12 @@
             android:id="@+id/pasbtn"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_background"
             android:hint="Enter password"
-            android:background="@drawable/corner"
             android:paddingLeft="20sp"
 
             android:textColor="@color/black"
@@ -107,3 +121,4 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView></androidx.constraintlayout.widget.ConstraintLayout>

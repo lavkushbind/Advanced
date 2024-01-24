@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -152,7 +153,22 @@ FirebaseStorage storage;
             public void afterTextChanged(Editable editable) {
             }
         });
-         binding.imgP.setOnClickListener(new View.OnClickListener() {
+        database.getReference().child("App").child("toptea").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String value = snapshot.getValue(String.class);
+                    binding.teach.setText(value);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        binding.imgP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -170,177 +186,129 @@ FirebaseStorage storage;
                 startActivityForResult(intent,22);
             }
         });
-        database.getReference().child("App").child("toptea").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String value = snapshot.getValue(String.class);
-                    binding.teach.setText(value);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         binding.postbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 randomKey2= UUID.randomUUID().toString();
-//                        database.getReference().push().getKey();
                 randomKey = database.getReference().push().getKey();
-                  dialog.show();
+                dialog.show();
                 final StorageReference reference = storage.getReference().child("posts").child(FirebaseAuth.getInstance().getUid()).child(new Date().getTime() + "");
                 reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        dialog.dismiss();
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
-                            public void onSuccess(Uri uri) {
-                                postmodel postmodel = new postmodel();
-                                postmodel.setStandred(randomKey);
-                            //    postmodel.setPostImage(randomKey);
-                                postmodel.setPostVideo(randomKey);
-                                postmodel.setPostImage(uri.toString());
-                                postmodel.setPhone(binding.phone.getText().toString());
-                                postmodel.setAbout(binding.aboutP.getText().toString());
-                                postmodel.setPostedBy(FirebaseAuth.getInstance().getUid());
-                                postmodel.setPrice(binding.price.getText().toString());
-                                postmodel.setTime(binding.timeP.getText().toString());
-                                postmodel.setLanguage(binding.languageP.getText().toString());
-                                postmodel.setDuration(binding.duration.getText().toString());
-                                postmodel.setPostdescription(binding.postdisc.getText().toString());
-                                NotificationModel notificationModel = new NotificationModel();
-                                notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
-                                notificationModel.setNotificationAt(new Date().getTime());
-                                notificationModel.setType("post");
-                                FirebaseDatabase.getInstance().getReference()
-                                        .child("notification")
-                                        .child(FirebaseAuth.getInstance().getUid())
-                                        .push()
-                                        .setValue(notificationModel);
-
-                                clasmodel clasmodel = new clasmodel();
-                                clasmodel.setType("post");
-                                clasmodel.setLink(randomKey);
-                              //  clasmodel.setPostpic("");
-                                clasmodel.setPosttitle("");
-                                clasmodel.setClasat(new Date().getTime());
-                                FirebaseDatabase.getInstance().getReference()
-                                        .child("AAclass")
-                                        .child(FirebaseAuth.getInstance().getUid())
-                                        .push()
-                                        .setValue(clasmodel);
-
-
-
-                                database.getReference().child("profile").child(auth.getUid()).push()
-                                        .setValue(postmodel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                dialog.dismiss();
+                                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
-                                    public void onSuccess(Void unused) {
+                                    public void onSuccess(Uri uri) {
+                                        postmodel postmodel = new postmodel();
+                                        postmodel.setStandred(randomKey);
+//                                postmodel.setPostVideo(uri.toString());
+                                        postmodel.setPostImage(uri.toString());
+                                        postmodel.setPhone(binding.phone.getText().toString());
+                                        postmodel.setAbout(binding.aboutP.getText().toString());
+                                        postmodel.setPostedBy(FirebaseAuth.getInstance().getUid());
+                                        postmodel.setPrice(binding.price.getText().toString());
+                                        postmodel.setTime(binding.timeP.getText().toString());
+                                        postmodel.setLanguage(binding.languageP.getText().toString());
+                                        postmodel.setDuration(binding.duration.getText().toString());
+                                        postmodel.setPostdescription(binding.postdisc.getText().toString());
+
+                                        NotificationModel notificationModel = new NotificationModel();
+                                        notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                        notificationModel.setNotificationAt(new Date().getTime());
+                                        notificationModel.setType("post");
                                         FirebaseDatabase.getInstance().getReference()
-                                                .child("Group")
-                                                .child(randomKey)
-                                                .child("member")
+                                                .child("notification")
                                                 .child(FirebaseAuth.getInstance().getUid())
                                                 .push()
-                                                .setValue(randomKey)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                .setValue(notificationModel);
+
+                                        clasmodel clasmodel = new clasmodel();
+                                        clasmodel.setType("post");
+                                        clasmodel.setLink(randomKey);
+                                          clasmodel.setPostpic(uri.toString());
+                                        clasmodel.setPosttitle(binding.postdisc.getText().toString());
+                                        clasmodel.setClasat(new Date().getTime());
+                                        FirebaseDatabase.getInstance().getReference()
+                                                .child("Classes")
+                                                .child(FirebaseAuth.getInstance().getUid())
+                                                .push()
+                                                .setValue(clasmodel);
+
+
+
+
+
+
+                                        database.getReference()
+                                                .child("posts")
+                                                .child(randomKey)
+                                                .setValue(postmodel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void unused) {
+                                                        FirebaseDatabase.getInstance().getReference()
+                                                                .child("Group")
+                                                                .child(randomKey)
+                                                                .child("member")
+                                                                .child(FirebaseAuth.getInstance().getUid())
+                                                                .push()
+                                                                .setValue(randomKey)
+                                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void unused) {
+                                                                    }
+                                                                });
+                                                        Toast.makeText(getContext(), "posted", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
-                                        Toast.makeText(getContext(), "posted", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-
-
-                                database.getReference()
-                                        .child("post")
-                                        .child(randomKey2)
-                                        .setValue(postmodel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                FirebaseDatabase.getInstance().getReference()
-                                                        .child("Group")
-                                                        .child(randomKey)
-                                                        .child("member")
-                                                        .child(FirebaseAuth.getInstance().getUid())
-                                                        .push()
-                                                        .setValue(randomKey)
-                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                            @Override
-                                                            public void onSuccess(Void unused) {
-                                                            }
-                                                        });
-                                                Toast.makeText(getContext(), "posted", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+                            }
+                        })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                float per=(100*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
+                                dialog.setMessage("Upload:"+(int)per+"%");
                             }
                         });
-                    }
-                })
-                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        float per=(100*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
-                        dialog.setMessage("Upload:"+(int)per+"%");
-                    }
-                });
             }
-            });
+        });
         return  binding.getRoot();
-}
+            }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==22) {
             if (data.getData() != null) {
-//                dialog.show();
                 Uri uri = data.getData();
-//                binding.addimg.setImageURI(uri);
-
-
-
                 final StorageReference reference = storage.getReference().child("uploadvideo").child(FirebaseAuth.getInstance().getUid());
-//                        .child("postvideo").child(FirebaseAuth.getInstance().getUid());
                 reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-//                        dialog.dismiss();
                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-//                                database.getReference().child("videop").child(FirebaseAuth.getInstance().getUid()).setValue(uri.toString());
-                                database.getReference().child("AApostss").push().child(FirebaseAuth.getInstance().getUid())
-                                        .child("postvideo")
-                                        .child(randomKey)
+                                database.getReference().child("Postvideo").push().child(FirebaseAuth.getInstance().getUid())
+                                        .child("postvideo").push()
                                         .setValue(uri.toString());
                             }
                         });
                     }
                 })
-//                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                            @Override
-//                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                                float per=(100*snapshot.getBytesTransferred()/snapshot.getTotalByteCount());
-//                                dialog.setMessage("Upload:"+(int)per+"%");
-//                            }
-//                        })
                 ;
             }
-        } else {
+        }
+
+
+        else {
             if
             (data.getData() != null) {
                 uri = data.getData();
-                //  binding.postimg.setImageURI(uri);
-                // binding.postimg.setVisibility(View.VISIBLE);
+
                 binding.postbtn.setBackgroundColor(getContext().getResources().getColor(R.color.white));
-                //    binding.postbtn.setTextColor(getContext().getResources().getColor(R.color.black));
                   binding.postbtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.postbg));
-               // binding.postbtn.setTextColor(getContext().getResources().getColor(R.color.black));
                 binding.postbtn.setEnabled(true);
             }
         }

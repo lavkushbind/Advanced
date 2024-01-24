@@ -10,7 +10,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="#080B1F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -18,294 +17,316 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:text="About Blanklearn"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helptext" />
+
+        <TextView
+            android:id="@+id/followerid2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="48dp"
+            android:visibility="gone"
+            diagonal:layout_constraintEnd_toEndOf="parent"
+            diagonal:layout_constraintTop_toBottomOf="@+id/coverpic" />
+
+        <TextView
+            android:id="@+id/Username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilepic" />
+
+        <ImageView
+            android:id="@+id/coverpic"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="160sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/backprofile" />
+
+        <ImageView
+            android:id="@+id/cha"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/profilepic"
+            app:layout_constraintStart_toEndOf="@+id/profilepic"
+            app:layout_constraintTop_toBottomOf="@+id/coverpic"
+            app:layout_constraintVertical_bias="0.555"
+            app:srcCompat="@drawable/gallery"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilepic"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="120dp"
+            android:padding="5sp"
+            android:src="@drawable/userprofile"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/coverpic" />
+
+        <ImageView
+            android:id="@+id/changecp"
+
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginTop="140sp"
 
 
-            <TextView
-                android:id="@+id/textView39"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="About Blanklearn"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/helptext" />
-
-            <TextView
-                android:id="@+id/followerid2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="110dp"
-                android:layout_marginEnd="48dp"
-                android:visibility="gone"
-                diagonal:layout_constraintEnd_toEndOf="parent"
-                diagonal:layout_constraintTop_toBottomOf="@+id/coverpic" />
-
-            <TextView
-                android:id="@+id/Username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profilepic" />
-
-            <ImageView
-                android:id="@+id/coverpic"
-                android:layout_width="match_parent"
-                android:layout_height="160sp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/lavkushbind" />
-
-            <ImageView
-                android:id="@+id/cha"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/profilepic"
-                app:layout_constraintStart_toEndOf="@+id/profilepic"
-                app:layout_constraintTop_toBottomOf="@+id/coverpic"
-                app:layout_constraintVertical_bias="0.555"
-                diagonal:srcCompat="@drawable/camera" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profilepic"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="120dp"
-                android:padding="5sp"
-                android:src="@drawable/profileuser"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="1sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/coverpic" />
-
-            <ImageView
-                android:id="@+id/changecp"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:layout_marginTop="140sp"
+            android:layout_marginEnd="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/gallery"
+         />
 
 
-                android:layout_marginEnd="32sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                diagonal:srcCompat="@drawable/camera" />
+        <TextView
+            android:id="@+id/emailtext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#2E4CF5"
+            android:textSize="14sp"
+            android:textStyle="bold"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Username" />
+
+        <TextView
+            android:id="@+id/bio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profesiontext" />
+
+        <TextView
+            android:id="@+id/profesiontext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="#FF9800"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailtext" />
 
 
-            <TextView
-                android:id="@+id/emailtext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Username" />
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:text="Blanklearn is an online learning platform featuring techers to present himself and thare courses"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
-            <TextView
-                android:id="@+id/bio"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profesiontext" />
+        <TextView
+            android:id="@+id/helptext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:text="Ask your questions and send fedback                  ➜"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/uploadbtn" />
 
-            <TextView
-                android:id="@+id/profesiontext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailtext" />
+        <TextView
+            android:id="@+id/message_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/edit_text_background"
+            android:padding="10dp"
+            android:text="Logout     ➜"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+        <ImageView
+            android:id="@+id/editpro"
+            android:layout_width="24dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coverpic"
+            app:srcCompat="@drawable/pen"
+             />
+
+        <ImageView
+            android:id="@+id/instagram"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bio"
+            diagonal:srcCompat="@drawable/instagram" />
+
+        <ImageView
+            android:id="@+id/face"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/linked"
+            app:layout_constraintTop_toBottomOf="@+id/bio"
+            diagonal:srcCompat="@drawable/facebook" />
+
+        <ImageView
+            android:id="@+id/linked"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/instagram"
+            app:layout_constraintTop_toBottomOf="@+id/bio"
+            diagonal:srcCompat="@drawable/linkedin" />
+
+        <ImageView
+            android:id="@+id/tweet"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+
+            app:layout_constraintStart_toEndOf="@+id/face"
+            app:layout_constraintTop_toBottomOf="@+id/bio"
+            diagonal:srcCompat="@drawable/twitter" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profile_post"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bio" />
+
+        <ImageView
+            android:id="@+id/Share"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toStartOf="@+id/editpro"
+            app:layout_constraintTop_toBottomOf="@+id/coverpic"
+            app:srcCompat="@drawable/next" />
+
+        <Button
+            android:id="@+id/uploadbtn"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="#04146F"
+            android:text="Upload Your Course"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_post" />
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Share with friends"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/uploadbtn" />
 
 
-            <TextView
-                android:id="@+id/textView40"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Blanklearn is an online learning platform featuring techers to present himself and thare courses"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView39" />
-
-            <TextView
-                android:id="@+id/helptext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="Ask your questions and send fedback                  ➜"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button6" />
-
-            <TextView
-                android:id="@+id/message_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="Logout     ➜"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView40" />
-
-            <ImageView
-                android:id="@+id/editpro"
-                android:layout_width="24dp"
-                android:layout_height="26dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/coverpic"
-                diagonal:srcCompat="@drawable/edit" />
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/twitter"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/linkedin"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
-                android:background="@color/card_blue"
-                android:backgroundTint="@color/card_blue">
-
-            <TextView
-                android:id="@+id/twittertext"
-                android:layout_width="30dp"
-                android:background="@drawable/twitter"
-                android:layout_height="30dp" />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/linkedin"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/insta"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
-                android:background="@color/card_blue"
-                android:backgroundTint="@color/card_blue">
-
-                <TextView
-                    android:id="@+id/linkedintext"
-                    android:layout_width="30dp"
-                    android:background="@drawable/linkedin"
-                    android:layout_height="30dp" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/fb"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
-                android:background="@color/card_blue"
-                android:backgroundTint="@color/card_blue">
-
-                <TextView
-                    android:id="@+id/fbtext"
-                    android:layout_width="30dp"
-                    android:background="@drawable/facebook"
-                    android:layout_height="30dp" />
-            </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@id/insta"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/fb"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
-                android:background="@color/card_blue"
-                android:backgroundTint="@color/red">
-
-                <TextView
-                    android:id="@+id/instatext"
-                    android:layout_width="30dp"
-                    android:background="@drawable/instagram"
-                    android:layout_height="30dp" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerProfile"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twitter" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/signbg"
-                android:elevation="50dp"
-                android:fontFamily="@font/aclonica"
-                android:gravity="center"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:shadowColor="@color/white"
-                android:text="Upload your course"
-                android:textColor="@color/white"
-                android:textSize="15dp"
-                app:backgroundTint="#2747E0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerProfile" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
+</ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="8dp"/>
+    <stroke android:color="@color/white" android:width="4dp"/> <!-- Blue border color and width -->
+</shape>

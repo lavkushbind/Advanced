@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -44,34 +45,54 @@ public class ClasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 //        database = FirebaseDatabase.getInstance();
-
         binding = FragmentClasBinding.inflate(inflater, container, false);
-            // Inflate the layout for the case when there are downloads
-
-
             list = new ArrayList<>();
             clasadapter adapter = new clasadapter(list, getContext());
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true);
             binding.clasRV.setLayoutManager(layoutManager);
             binding.clasRV.setAdapter(adapter);
-            database.getReference().child("AAclass")
-                    .child(FirebaseAuth.getInstance().getUid())
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                clasmodel clasmodel = dataSnapshot.getValue(clasmodel.class);
-                                clasmodel.setClasid(dataSnapshot.getKey());
-                                list.add(clasmodel);
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
+        database.getReference().child("Classes").child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Data exists, proceed with your current logic
+                    list.clear();  // Assuming 'list' is your data list
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        clasmodel clasmodel = dataSnapshot.getValue(clasmodel.class);
+                        clasmodel.setClasid(dataSnapshot.getKey());
+                        list.add(clasmodel);
+                    }
+                    adapter.notifyDataSetChanged();
+                } else {
+                    // Data does not exist, show a Toast message
+                    list.clear();
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getActivity(), "You were not enrolled in any course" , Toast.LENGTH_SHORT).show();                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle errors if any
+            }
+        });
+//            database.getReference().child("AAclass").child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                                clasmodel clasmodel = dataSnapshot.getValue(clasmodel.class);
+//                                clasmodel.setClasid(dataSnapshot.getKey());
+//                                list.add(clasmodel);
+//                            }
+//                            adapter.notifyDataSetChanged();
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                    });
             return binding.getRoot();
         }
 

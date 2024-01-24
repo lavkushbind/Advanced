@@ -1,5 +1,7 @@
 package com.example.chat;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -13,6 +15,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blank_learn.dark.R;
+import com.example.home.post2Activity;
 import com.google.android.exoplayer2.Renderer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -49,7 +53,7 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-         View view;
+        View view;
         if (viewType == SENDER_TYPE) {
             view = LayoutInflater.from(context).inflate(R.layout.sender_layout_item, parent, false);
             return new SenderViewHolder(view);
@@ -63,14 +67,6 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getItemViewType(int position) {
 
 
-//        chatmodel message = list.get(position);
-//        if (message.getMessageType() == chatmodel.MessageType.PDF) {
-//            return PDF_TYPE;
-//        } else if (message.getMuid().equals(FirebaseAuth.getInstance().getUid())) {
-//            return SENDER_TYPE;
-//        } else {
-//            return RECEIVER_TYPE;
-//        }
 
         if (list.get(position).getMuid().equals(FirebaseAuth.getInstance().getUid())) {
             return SENDER_TYPE;
@@ -81,134 +77,126 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        chatmodel chatmodel = list.get(position);
-//        if (holder instanceof ReceiverViewHolder) {
-//            if (chatmodel.getMessageType() == com.example.chat.chatmodel.MessageType.PDF) {
-//                // Display PDF icon or attachment icon, and set a click listener to open the PDF
-//                ((ReceiverViewHolder) holder).receivedImage.setImageResource(R.drawable.img);
-//                ((ReceiverViewHolder) holder).receivedImage.setOnClickListener(v -> {
-//                    String pdfUrl = chatmodel.getMasseg(); // Assuming chatmodel.getMasseg() contains the PDF URL
-//                    openPdf(pdfUrl);
-//                });
-//            } else //        if (holder instanceof SenderViewHolder)
-//        {
-//            ((SenderViewHolder) holder).senderMsg.setText(chatmodel.getMasseg());
-//            linkifyText(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
-//            setLongPressListener(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
-//            ((ReceiverViewHolder) holder).receiverMsg.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // Handle opening the image here
-//                    String imageUrl = chatmodel.getMasseg(); // Assuming chatmodel.getMasseg() contains the image URL
-//                    if (imageUrl != null && !imageUrl.isEmpty()) {
-//                        // Open the image, e.g., in an image viewer or a custom dialog
-//                        openImage(imageUrl);
-//                    }
-//                }
-//
-//
-//
-//            });
-//        }  if (holder instanceof ReceiverViewHolder) {
-//            ((ReceiverViewHolder) holder).receiverMsg.setText(chatmodel.getMasseg());
-//            linkifyText(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
-//
-//            setLongPressListener(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
-//
-//            ((ReceiverViewHolder) holder).receivedImage.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // Handle opening the image here
-//                    String imageUrl = chatmodel.getMasseg(); // Assuming chatmodel.getMasseg() contains the image URL
-//                    if (imageUrl != null && !imageUrl.isEmpty()) {
-//                        // Open the image, e.g., in an image viewer or a custom dialog
-//                        openImage(imageUrl);
-//                    }
-//                }
-//            });
-//        }
-//        }
-        if (holder instanceof SenderViewHolder)
-        {
-            ((SenderViewHolder) holder).senderMsg.setText(chatmodel.getMasseg());
-            linkifyText(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
-            setLongPressListener(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
-//            ((ReceiverViewHolder) holder).receiverMsg.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // Handle opening the image here
-//                    String imageUrl = chatmodel.getMasseg(); // Assuming chatmodel.getMasseg() contains the image URL
-//                    if (imageUrl != null && !imageUrl.isEmpty()) {
-//                        // Open the image, e.g., in an image viewer or a custom dialog
-////                        openImage(imageUrl);
-//                    }
-//                }
-//
-//            });
-        } else if (holder instanceof ReceiverViewHolder) {
-            ((ReceiverViewHolder) holder).receiverMsg.setText(chatmodel.getMasseg());
-            linkifyText(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
+        chatmodel chatmodel = list.get(position);{
+            if (holder instanceof SenderViewHolder) {
+                ((SenderViewHolder) holder).senderMsg.setText(chatmodel.getMasseg());
+                linkifyText(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
+                setLongPressListener(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
 
-            setLongPressListener(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
+                // Check if it's an image message
+                if (chatmodel.isImageUrl()) {
+                    // Load and display the image using Picasso
+                    loadImageWithPicasso(chatmodel.getMasseg(), ((SenderViewHolder) holder).senderImage);
+                    ((SenderViewHolder) holder).senderImage.setVisibility(View.VISIBLE);
+                    ((SenderViewHolder) holder).senderMsg.setVisibility(View.GONE);
+                } else {
+                    ((SenderViewHolder) holder).senderImage.setVisibility(View.GONE);
+                    ((SenderViewHolder) holder).senderMsg.setVisibility(View.VISIBLE);
+                }
+                ((SenderViewHolder) holder).senderImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String imageUrl = chatmodel.getMasseg();
+                        if (imageUrl != null && chatmodel.isImageUrl()) {
+                            // Show the image in full screen
+                            showImageFullScreen(imageUrl);
+                        }
+                    }
+                });
 
-            ((ReceiverViewHolder) holder).receivedImage.setOnClickListener(new View.OnClickListener() {
+            } else if (holder instanceof ReceiverViewHolder) {
+                ((ReceiverViewHolder) holder).receiverMsg.setText(chatmodel.getMasseg());
+                linkifyText(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
+                setLongPressListener(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
+
+                // Check if it's an image message
+                if (chatmodel.isImageUrl()) {
+                    // Load and display the image using Picasso
+                    loadImageWithPicasso(chatmodel.getMasseg(), ((ReceiverViewHolder) holder).receivedImage);
+                    ((ReceiverViewHolder) holder).receivedImage.setVisibility(View.VISIBLE);
+                    ((ReceiverViewHolder) holder).receiverMsg.setVisibility(View.GONE);
+                } else {
+                    ((ReceiverViewHolder) holder).receivedImage.setVisibility(View.GONE);
+                    ((ReceiverViewHolder) holder).receiverMsg.setVisibility(View.VISIBLE);
+                }
+
+// Inside your adapter's onBindViewHolder method
+                ((ReceiverViewHolder) holder).receivedImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String imageUrl = chatmodel.getMasseg();
+                        if (imageUrl != null && chatmodel.isImageUrl()) {
+                            // Show the image in full screen
+                            showImageFullScreen(imageUrl);
+                        }
+                    }
+                });
+            }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Handle opening the image here
-                    String imageUrl = chatmodel.getMasseg(); // Assuming chatmodel.getMasseg() contains the image URL
-                    if (imageUrl != null && !imageUrl.isEmpty()) {
-                        // Open the image, e.g., in an image viewer or a custom dialog
-//                        openImage(imageUrl);
+                    if (chatmodel.isImageUrl()) {
+                        Intent intent = new Intent(context, photoview.class);
+                        intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_URL, chatmodel.getMasseg());
+
+                        if (context instanceof Activity) {
+                            ((Activity) context).startActivity(intent);
+                        } else {
+                            Log.e("Adapter", "Cannot start activity from non-Activity context");
+                        }
+                    }                    else if (holder.itemView instanceof TextView) {
+                        String websiteUrl = ((TextView) holder.itemView).getText().toString();
+
+                        if (!TextUtils.isEmpty(websiteUrl)) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl));
+                            if (intent.resolveActivity(context.getPackageManager()) != null) {
+                                context.startActivity(intent);
+                            } else {
+                                Toast.makeText(context, "No app available to handle the URL", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(v.getContext(), "URL is empty", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        // Handle other cases if needed
                     }
                 }
             });
+
+
         }
+    }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String websiteUrl;
-                if (holder.itemView instanceof TextView) {
-                    websiteUrl = ((TextView) holder.itemView).getText().toString();
+    private void showImageFullScreen(String imageUrl) {
+        Log.d("ShowFullScreen", "Context: " + context);
+        if (context instanceof Activity && !((Activity) context).isFinishing()) {
+            Log.d("ShowFullScreen", "Showing fullscreen image");
+            Dialog dialog = new Dialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+            dialog.setContentView(R.layout.dialog_fullscreen_image);
 
-                    if (!TextUtils.isEmpty(websiteUrl)) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl));
-                        if (intent.resolveActivity(context.getPackageManager()) != null) {
-                            context.startActivity(intent);
-                        } else {
-                            Toast.makeText(context, "No app available to handle the URL", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(v.getContext(), "URL is empty", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(v.getContext(), "Not a TextView", Toast.LENGTH_SHORT).show();
+            ImageView fullScreenImageView = dialog.findViewById(R.id.fullScreenImageView);
+            loadImageWithPicasso(imageUrl, fullScreenImageView);
+
+            // Set a click listener on the image to close the dialog when clicked
+            fullScreenImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
                 }
-            }
-        });
-    }
+            });
 
-    private void openPdf(String pdfUrl) {
-        // Open and display the PDF using an external PDF viewer or library
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.parse(pdfUrl), "application/pdf");
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-        try {
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            // Handle the case where no PDF viewer app is available
-            Toast.makeText(context, "No app available to handle PDF", Toast.LENGTH_SHORT).show();
+            // Show the dialog
+            dialog.show();
         }
     }
 
-//    private void openImage(String imageUrl) {
-//        ImageView imageView = new ImageView(context);
-//        Picasso.get().load(imageUrl).into(imageView);
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        builder.setView(imageView);
-//        builder.show();
-//    }
+    private void loadImageWithPicasso(String imageUrl, ImageView imageView) {
+        Picasso.get().load(imageUrl).into(imageView);
+    }
+
+
+
 
 
 
@@ -221,17 +209,21 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             String url = matcher.group();
             int start = matcher.start();
             int end = matcher.end();
-
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
                     // Handle the URL click event here
                     if (!TextUtils.isEmpty(url)) {
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                        if (intent.resolveActivity(context.getPackageManager()) != null) {
-                            context.startActivity(intent);
+
+                        // Use the correct context to start the activity
+                        if (widget.getContext() instanceof Activity) {
+                            // If widget.getContext() is an Activity, use it
+                            ((Activity) widget.getContext()).startActivity(intent);
                         } else {
-                            Toast.makeText(context, "No app available to handle the URL", Toast.LENGTH_SHORT).show();
+                            // If widget.getContext() is not an Activity, add FLAG_ACTIVITY_NEW_TASK flag
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            widget.getContext().startActivity(intent);
                         }
                     } else {
                         Toast.makeText(widget.getContext(), "URL is empty", Toast.LENGTH_SHORT).show();
@@ -245,6 +237,8 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ds.setColor(context.getResources().getColor(R.color.card_blue));
                 }
             };
+
+
 
             spannableString.setSpan(clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
@@ -278,10 +272,12 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static class SenderViewHolder extends RecyclerView.ViewHolder {
         TextView senderMsg;
+        ImageView senderImage;
 
         public SenderViewHolder(@NonNull View itemView) {
             super(itemView);
             senderMsg = itemView.findViewById(R.id.senmsg);
+            senderImage= itemView.findViewById(R.id.image);
         }
     }
 

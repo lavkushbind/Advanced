@@ -33,7 +33,7 @@ public class ImageSliderAdapter extends PagerAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slider_item, null);
 
-        ImageView imageView = view.findViewById(R.id.slider_image);
+        ImageView imageView = view.findViewById(R.id.myimage);
         imageView.setImageResource(images[position]);
 
         container.addView(view);

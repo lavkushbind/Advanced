@@ -2,9 +2,22 @@ package com.example.chat;
 
 import com.google.android.exoplayer2.Renderer;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class chatmodel {
     String Muid,masseg;
     Long timestamp;
+    public boolean isImageUrl() {
+        return masseg != null && masseg.contains("firebasestorage.googleapis.com") && masseg.contains("alt=media");
+
+        // Use a simple Firebase Storage URL pattern matching to check if the message is an image URL
+//        String firebaseStorageUrlPattern = "gs://[\\w_-]+(\\.[\\w_-]+)+([\\w.,@?^=%&:/~+#-]*[\\w@?^=%&/~+#-])?";
+//        Pattern pattern = Pattern.compile(firebaseStorageUrlPattern);
+//        Matcher matcher = pattern.matcher(masseg);
+//
+//        return matcher.matches();
+    }
     String urip;
     private MessageType messageType;
 

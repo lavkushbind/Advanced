@@ -38,13 +38,9 @@ Context context;
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         clasmodel clasmodel= list.get(position) ;
-
-      Picasso.get().load(clasmodel.getPostpic())
-             // .placeholder(R.drawable.profileuser)
+        Picasso.get().load(clasmodel.getPostpic())
               .into(holder.binding.postpic);
-
         holder.binding.posttitle.setText(clasmodel.getPosttitle());
-
      String type = clasmodel.getType();
        FirebaseDatabase.getInstance().getReference()
                 .child("Users")
@@ -55,10 +51,10 @@ Context context;
                     {
                         postmodel postmodel = snapshot.getValue(postmodel.class);
                         if(type.equals("buyy"))  {
-                            holder.binding.usernmed.setText( "start learning You are in the class");
+                            holder.binding.usernmed.setText( "start learning ");
                         }
                         if(type.equals("buy"))  {
-                            holder.binding.usernmed.setText( "start learning You are in the class");
+                            holder.binding.usernmed.setText( "start learning ");
                         }
                              if(type.equals("post"))  {
                             holder.binding.usernmed.setText( " you course is now live");
@@ -77,7 +73,7 @@ Context context;
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(context, GroupChat.class);
-                intent.putExtra("idd",clasmodel.getLink());
+                intent.putExtra("Postid",clasmodel.getLink());
                 intent.putExtra("name",clasmodel.getType());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

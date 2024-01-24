@@ -4,13 +4,20 @@ public class clasmodel {
     private  String link;
     private  String type;
     private long clasat;
+
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     private  boolean checkopen;
     private  String posttitle;
     private String postpic;
     public clasmodel() {
-    }
-    public clasmodel(String link) {
-        this.link = link;
     }
     public clasmodel(String clasid, String type, long clasat, boolean checkopen) {
         this.clasid = clasid;
@@ -29,12 +36,6 @@ public class clasmodel {
     }
     public void setPostpic(String postpic) {
         this.postpic = postpic;
-    }
-    public String getLink() {
-        return link;
-    }
-    public void setLink(String link) {
-        this.link = link;
     }
     public String getClasid() {
         return clasid;

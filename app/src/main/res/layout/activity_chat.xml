@@ -69,16 +69,17 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
 
-        app:layout_constraintBottom_toBottomOf="@+id/attachment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/attachment"
+        app:layout_constraintTop_toBottomOf="@+id/messageAdapter"
         app:srcCompat="@android:drawable/ic_menu_send" />
+
     <ImageView
         android:id="@+id/attachment"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="right"
         android:foregroundGravity="center"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendBtn"
         app:srcCompat="@android:drawable/ic_menu_gallery"

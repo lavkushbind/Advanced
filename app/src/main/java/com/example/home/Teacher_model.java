@@ -2,51 +2,40 @@ package com.example.home;
 
 public class Teacher_model {
 
-    private String photo;
-    private String userId;
+    private String id;
+    private String pic;
+    private String name;
 
     public Teacher_model() {
     }
 
-    private String Teacher_name;
-    private String Teacherid;
-
-    public String getPhoto() {
-        return photo;
+    public Teacher_model(String id, String pic, String name) {
+        this.id = id;
+        this.pic = pic;
+        this.name = name;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public String getId() {
+        return id;
     }
 
-    public String getUserId() {
-        return userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public String getPic() {
+        return pic;
     }
 
-    public String getTeacher_name() {
-        return Teacher_name;
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
-    public void setTeacher_name(String teacher_name) {
-        Teacher_name = teacher_name;
+    public String getName() {
+        return name;
     }
 
-    public String getTeacherid() {
-        return Teacherid;
-    }
-
-    public void setTeacherid(String teacherid) {
-        Teacherid = teacherid;
-    }
-
-    public Teacher_model(String photo, String userId, String teacher_name, String teacherid) {
-        this.photo = photo;
-        this.userId = userId;
-        Teacher_name = teacher_name;
-        Teacherid = teacherid;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white">
-
+    android:background="#0B0E1E"
+    android:backgroundTint="#0B0E1E">
     <LinearLayout
         android:id="@+id/linearLayout2"
 
@@ -15,24 +15,25 @@
         android:layout_marginStart="3dp"
         android:maxWidth="200dp"
 
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="1dp"
         android:background="@drawable/massegebg"
-        android:backgroundTint="#130CE8"
+        android:backgroundTint="#08400A"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="190dp"
-            android:layout_height="124dp"
+            android:layout_width="280dp"
+            android:layout_height="200dp"
             android:layout_margin="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/profileuser"
 
             android:clickable="true"
             android:onClick="onTmageClick"
+
+            android:src="@drawable/homepag"
             android:visibility="gone" />
 
         <TextView
@@ -40,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:maxWidth="200dp"
+            android:maxWidth="280dp"
             android:paddingStart="10sp"
             android:paddingLeft="10dp"
 
@@ -48,7 +49,13 @@
             android:paddingEnd="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="fhj"
+            android:text="No internet
+Try:
+
+Checking the network cables, modem, and router
+Reconnecting to Wi-Fi
+Running Windows Network Diagnostics
+ERR_INTERNET_DISCONNECTED"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="normal" />

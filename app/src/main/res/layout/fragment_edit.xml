@@ -6,7 +6,9 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+
+    android:background="#0B0E1E"
+    android:backgroundTint="#0B0E1E">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,11 +30,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="#242323"
-                android:text="Update"
-                android:textColor="#042FF4"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:text="Update"
+
                 app:layout_constraintBottom_toTopOf="@+id/Username"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -41,9 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="#242323"
                 android:text="Update"
-                android:textColor="#042FF4"
+
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/textView24"
@@ -54,9 +56,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="#242323"
                 android:text="Update"
-                android:textColor="#042FF4"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/emailtext"
@@ -67,9 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="#242323"
                 android:text="Update"
-                android:textColor="#042FF4"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/bio"
@@ -79,19 +79,18 @@
                 android:id="@+id/profesiontext"
 
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="60sp"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
-                android:gravity="top"
                 android:inputType="textPersonName"
-                android:textColor="@color/blackk"
-                android:textSize="16sp"
-                app:backgroundTint="#3E979393"
-                android:background="@drawable/corner"
+                android:paddingLeft="10dp"
+                android:textColor="@color/white"
 
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/Updatepro"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailtext" />
@@ -99,37 +98,38 @@
             <EditText
                 android:id="@+id/nametext"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
-
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/corner"
-                android:ems="10"
-                android:gravity="top"
-                android:inputType="textPersonName"
-                android:textColor="@color/blackk"
-                android:textSize="16sp"
-                app:backgroundTint="#3E979393"
-                app:layout_constraintEnd_toStartOf="@+id/Updatename"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-            <EditText
-                android:id="@+id/biotext"
-                android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="60sp"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
-                android:gravity="top"
                 android:inputType="textPersonName"
-                android:textColor="@color/blackk"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="esgfdgfhgj"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                app:backgroundTint="#3E979393"
+                app:layout_constraintEnd_toStartOf="@+id/Updatename"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+            <EditText
+                android:id="@+id/biotext"
+                android:layout_width="0dp"
+                android:layout_height="60sp"
+
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/Update"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -137,18 +137,18 @@
             <EditText
                 android:id="@+id/emailtex"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="60sp"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
-                android:gravity="top"
                 android:inputType="textPersonName"
-                android:textColor="@color/blackk"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                app:backgroundTint="#3E979393"
                 app:layout_constraintEnd_toStartOf="@+id/Updateemail"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bio" />
@@ -160,7 +160,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Emailid"
-                android:textColor="#090808"
+                android:textColor="@color/white"
                 android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailtex" />
@@ -172,23 +172,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Paste bio detail"
-                android:textColor="#040303"
+                android:textColor="@color/white"
                 android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/biotext" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="Edit Profile"
-                android:textColor="#060505"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/bio"
@@ -196,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Name"
-                android:textColor="#060505"
+                android:textColor="@color/white"
                 android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nametext" />
@@ -208,36 +195,26 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Profession"
-                android:textColor="#030202"
+                android:textColor="@color/white"
                 android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profesiontext" />
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/back"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/linkdinurl"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="60sp"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:gravity="top"
-                android:inputType="textPersonName"
-                android:textColor="@color/blackk"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                app:backgroundTint="#3E979393"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/updateL"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Username" />
@@ -248,8 +225,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
-                android:text="facebook"
-                android:textColor="@color/black"
+                android:text="facebook Link"
+                android:textColor="@color/white"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/facebookurl" />
 
@@ -259,8 +237,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="TextView"
-                android:textColor="@color/red"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/tweeterurlj"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -269,8 +250,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="TextView"
-                android:textColor="@color/red"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/textView51"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -279,8 +263,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="TextView"
-                android:textColor="@color/red"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/textView43"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -289,26 +276,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Linkdin"
-                android:textColor="@color/black"
+                android:text="Linkedin Link"
+                android:textColor="@color/white"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linkdinurl" />
 
             <EditText
                 android:id="@+id/facebookurl"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="60sp"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:gravity="top"
-                android:inputType="textPersonName"
-                android:textColor="@color/blackk"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                app:backgroundTint="#3E979393"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/updatef"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linkdinurl" />
@@ -318,26 +306,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="TextView"
-                android:textColor="@color/red"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/instagramurlh"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
                 android:id="@+id/tweeterurl"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="60sp"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:gravity="top"
-                android:inputType="textPersonName"
-                android:textColor="@color/blackk"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                app:backgroundTint="#3E979393"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/updatet"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView43" />
@@ -345,17 +336,17 @@
             <EditText
                 android:id="@+id/instagramurl"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="60sp"
 
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:gravity="top"
-                android:inputType="textPersonName"
-                android:textColor="@color/blackk"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
                 android:textSize="16sp"
-                app:backgroundTint="#3E979393"
+                android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@+id/updatei"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tweeterurlj" />
@@ -366,8 +357,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
-                android:text="tweeter"
-                android:textColor="@color/black"
+                android:text="tweeter Link"
+                android:textColor="@color/white"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tweeterurl" />
 
@@ -376,10 +368,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="instagram"
-                android:textColor="@color/black"
+                android:text="instagram Link"
+                android:textColor="@color/white"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/instagramurl" />
+
+            <TextView
+                android:id="@+id/cardView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Update Your Profile"
+                android:textSize="25dp"
+                android:textStyle="bold"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/leftarrow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

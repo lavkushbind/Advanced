@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     xmlns:diagonal="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#080B1F"
+    android:backgroundTint="#080B1F">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,13 +15,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#080B1F"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:backgroundTint="#080B1F"
 
+            android:layout_height="wrap_content">
 
 
             <androidx.cardview.widget.CardView
@@ -29,33 +33,36 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/linkedin"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
                 android:background="@color/card_blue"
-                android:backgroundTint="@color/card_blue">
+                android:backgroundTint="@color/card_blue"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/linkedin"
+                app:layout_constraintTop_toBottomOf="@+id/bio">
 
                 <TextView
                     android:id="@+id/twittertext"
-                    android:layout_width="30dp"
-                    android:background="@drawable/twitter"
-                    android:layout_height="30dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/twitter" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/linkedin"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/insta"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
                 android:background="@color/card_blue"
-                android:backgroundTint="@color/card_blue">
+                android:backgroundTint="@color/card_blue"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/insta"
+                app:layout_constraintTop_toBottomOf="@+id/bio">
 
                 <TextView
                     android:id="@+id/linkedintext"
                     android:layout_width="30dp"
-                    android:background="@drawable/linkedin"
-                    android:layout_height="30dp" />
+                    android:layout_height="30dp"
+                    android:background="@drawable/linkedin" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -64,18 +71,18 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
                 android:background="@color/card_blue"
-                android:backgroundTint="@color/card_blue">
+                android:backgroundTint="@color/card_blue"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bio">
 
                 <TextView
                     android:id="@+id/fbtext"
-                    android:layout_width="30dp"
-                    android:background="@drawable/facebook"
-                    android:layout_height="30dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/facebook" />
             </androidx.cardview.widget.CardView>
-
 
 
             <androidx.cardview.widget.CardView
@@ -84,16 +91,17 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/fb"
-                app:layout_constraintTop_toBottomOf="@+id/bio"
                 android:background="@color/card_blue"
-                android:backgroundTint="@color/red">
+                android:backgroundTint="@color/red"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/fb"
+                app:layout_constraintTop_toBottomOf="@+id/bio">
 
                 <TextView
                     android:id="@+id/instatext"
                     android:layout_width="30dp"
-                    android:background="@drawable/instagram"
-                    android:layout_height="30dp" />
+                    android:layout_height="30dp"
+                    android:background="@drawable/instagram" />
             </androidx.cardview.widget.CardView>
 
 
@@ -114,8 +122,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
 
-                android:text="Blanklearn"
-                android:textColor="#0521BB"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +148,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/lavkushbind" />
+                app:srcCompat="@drawable/backprofile" />
 
             <ImageView
                 android:id="@+id/cha"
@@ -160,7 +167,7 @@
                 android:layout_height="100sp"
                 android:layout_marginTop="120dp"
                 android:padding="2sp"
-                android:src="@drawable/profileuser"
+                android:src="@drawable/userprofile"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -185,13 +192,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="m"
-                android:textColor="#060606"
-                android:textSize="16sp"
+                android:textColor="#3955EF"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Username" />
 
@@ -201,8 +208,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:textColor="#060606"
-                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profesiontext" />
@@ -212,14 +219,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="l"
-                android:textColor="#060606"
-                android:textSize="16sp"
+                android:textColor="#FF9800"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/twitter" />
+                app:layout_constraintTop_toBottomOf="@+id/emailtext" />
 
             <ImageView
                 android:id="@+id/editpro"
@@ -234,14 +240,32 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ProRV"
-                android:layout_width="43dp"
-                android:layout_height="201dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bio" />
+                app:layout_constraintTop_toBottomOf="@+id/twitter" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+
+
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/edit_text_background"
+                android:gravity="center"
+                android:backgroundTint="#3F5BF8"
+                android:text="Massage"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coverpic" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

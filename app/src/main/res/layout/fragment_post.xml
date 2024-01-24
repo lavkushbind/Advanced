@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#0B0E1E">
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -104,23 +104,24 @@
             <EditText
                 android:id="@+id/phone"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="2dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
 
-
                 android:gravity="start"
-                android:scrollbars="vertical"
-                android:maxLines="10"
-                android:minLines="1"
                 android:imeOptions="actionDone"
-
                 android:inputType="number"
-                android:textColor="#090808"
-                android:textColorHint="@color/black"
+                android:maxLines="10"
+                android:minHeight="60dp"
+                android:minLines="1"
+                android:padding="10dp"
+
+                android:scrollbars="vertical"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -130,16 +131,18 @@
             <EditText
                 android:id="@+id/aboutP"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="2dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:gravity="top"
                 android:inputType="textMultiLine|textPersonName"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:minHeight="60dp"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -153,7 +156,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Information about the curriculum of the course and how benefits students (IN DETAIL)"
-                android:textColor="@color/blackk"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +170,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="Enter your phone number for receive payment must be link with bank"
-                android:textColor="@color/blackk"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -180,7 +183,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Timeing of class in detail(starting time , ending time, number of days in week)"
-                android:textColor="@color/blackk"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +197,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="3. How does that make its different from other "
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -208,7 +211,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="Create a 2 mint video "
-                android:textColor="#042FF4"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -223,7 +226,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Why Educationist"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:visibility="gone"
@@ -232,15 +235,20 @@
 
             <Button
                 android:id="@+id/postbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="74dp"
                 android:layout_marginTop="8dp"
-                android:text="Post"
+                android:layout_marginEnd="74dp"
+                android:layout_marginBottom="32dp"
+
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="#041367"
+                android:elevation="4dp"
+                android:text="Upload"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-
-                android:elevation="4dp"
-                android:backgroundTint="#042FF4"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView42" />
@@ -263,7 +271,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Add  to your video"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toStartOf="@+id/addimg"
@@ -275,50 +283,48 @@
             <EditText
                 android:id="@+id/duration"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="2dp"
-
-
-                android:gravity="start"
-                android:scrollbars="vertical"
-                android:maxLines="10"
-                android:minLines="1"
-                android:imeOptions="actionDone"
-
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
-                android:inputType="textMultiLine|textPersonName"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:minHeight="60dp"
+                android:minLines="1"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <EditText
                 android:id="@+id/price"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="16dp"
 
-
-
-
-                android:gravity="start"
-                android:scrollbars="vertical"
-                android:maxLines="10"
-                android:minLines="1"
-                android:imeOptions="actionDone"
                 android:layout_marginEnd="2dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
+
+
                 android:ems="10"
+                android:gravity="start"
+                android:imeOptions="actionDone"
                 android:inputType="textMultiLine|numberDecimal"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:maxLines="10"
+                android:minHeight="60dp"
+                android:minLines="1"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -332,7 +338,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Price for 1 Student"
-                android:textColor="@color/blackk"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -346,7 +352,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="1. About yourself with your qulification "
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -359,7 +365,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="2. About your course and its curriculum"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -367,23 +373,24 @@
             <EditText
                 android:id="@+id/timeP"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-
 
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="2dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:gravity="start"
-
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine|textPersonName"
+
                 android:maxLines="10"
+                android:minHeight="60dp"
                 android:minLines="1"
+                android:padding="10dp"
                 android:scrollbars="vertical"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -393,16 +400,18 @@
             <EditText
                 android:id="@+id/languageP"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="2dp"
-                android:background="@drawable/corner"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:gravity="top"
                 android:inputType="textMultiLine|textPersonName"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:minHeight="60dp"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
@@ -417,7 +426,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Enter the topic with grade/ standard"
-                android:textColor="@color/blackk"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -430,7 +439,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:text="Enter your medium"
-                android:textColor="@color/blackk"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -442,7 +451,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="Enter the duration of  course"
-                android:textColor="@color/blackk"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.038"
                 app:layout_constraintStart_toStartOf="parent"
@@ -457,7 +466,7 @@
                 android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:text="Check carefully then upload"
-                android:textColor="#042FF4"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -468,30 +477,27 @@
                 android:id="@+id/postdisc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="160dp"
-                android:background="@drawable/signbg"
-                android:backgroundTint="#EBEAEA"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
                 android:ems="10"
-
                 android:gravity="start"
-                android:hint="Enter the topic  with grade standard"
+                android:hint=""
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine|textPersonName"
-                android:minHeight="80dp"
-                android:minLines="1"
+                android:minHeight="60dp"
 
+                android:minLines="1"
+                android:padding="10dp"
                 android:paddingLeft="20dp"
                 android:paddingTop="5dp"
                 android:paddingRight="20dp"
                 android:paddingBottom="5dp"
                 android:scrollbars="vertical"
-                android:textColor="@color/hint_color"
-                android:textColorHint="@color/black"
-                android:textSize="20sp"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
             <TextView
                 android:id="@+id/teach"
@@ -501,101 +507,41 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="TextView"
-                android:textColor="#0A0A0A"
+                android:textColor="@color/white"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
                 android:id="@+id/tittle"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:hint="Email-Id"
-                app:endIconMode="clear_text"
-                app:errorEnabled="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/edit_text_background"
+
+                android:ems="10"
+                android:gravity="start"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine|textPersonName"
+                android:minHeight="60dp"
+                android:minLines="1"
+
+                android:padding="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                android:scrollbars="vertical"
+                android:text=""
+                android:textColor="@color/white"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType=""
-                    android:maxLines="1" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:hint="Email-Id"
-                app:endIconMode="clear_text"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType=""
-                    android:maxLines="1" />
-
-            </com.google.android.material.textfield.TextInputLayout> <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:hint="Email-Id"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType=""
-                android:maxLines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout> <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:hint="Email-Id"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType=""
-                android:maxLines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout> <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:hint="Email-Id"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType=""
-                android:maxLines="1" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView41"
@@ -604,7 +550,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="upload a cover photo for your course"
-                android:textColor="#042FF4"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -630,12 +576,61 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:text="(Fill each and every detail)"
-                android:textColor="#090808"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#07197E"
+                android:elevation="20dp"
+                app:contentPaddingRight="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView46"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Uplaod Course"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView47"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Complete this form "
+
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:text="Title"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tittle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

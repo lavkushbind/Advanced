@@ -43,10 +43,10 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.viewholder
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         Users users = list.get(position);
         Picasso.get().load(users.getProfilepic())
-                .placeholder(R.drawable.profileuser)
+                .placeholder(R.drawable.userprofile)
                         .into(holder.binding.Member);
         holder.binding.textView32.setText(users.getName());
-       holder.binding.textView27.setText(users.getBio());
+       holder.binding.textView27.setText(users.getEmail());
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

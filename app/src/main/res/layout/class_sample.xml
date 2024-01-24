@@ -4,64 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="3dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginRight="3dp"
-    android:background="@color/white"
-    android:backgroundTint="#824C4C">
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/post_background"
+    android:backgroundTint="#051573">
 
 
     <View
         android:id="@+id/view5"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
         android:background="#3E2B2A2A"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/posttitle" />
+        app:layout_constraintTop_toBottomOf="@+id/postpic" />
 
     <TextView
         android:id="@+id/posttitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/aclonica"
-        android:textColor="#130CE8"
-        android:textSize="20sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postpic"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/postpic" />
 
     <ImageView
         android:id="@+id/postpic"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="#652D2D"
         android:padding="2dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/newpi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernmed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/usernmed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:textColor="#444242"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:textColor="#FF9800"
         android:textSize="14sp"
         android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/posttitle" />
 
     <Button
         android:id="@+id/buttonfollw"
@@ -76,10 +75,14 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="40sp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="22dp"
-        android:backgroundTint="#130CE8"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/edit_text_background"
         android:text="Members"
         android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postpic" />
 
@@ -91,6 +94,7 @@
         android:layout_marginEnd="16dp"
         android:background="#009688"
         android:backgroundTint="#009688"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

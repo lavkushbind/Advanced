@@ -31,40 +31,52 @@ public class Member extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = FragmentMemberBinding.inflate(getLayoutInflater());
         list = new ArrayList<>();
-        MemberAdapter memberAdapter= new MemberAdapter(list, getApplicationContext());
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,true);
-               binding.RvM.setLayoutManager(linearLayoutManager);
-               binding.RvM.setAdapter(memberAdapter);
+        MemberAdapter memberAdapter = new MemberAdapter(list, getApplicationContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, true);
+        binding.RvM.setLayoutManager(linearLayoutManager);
+        binding.RvM.setAdapter(memberAdapter);
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
         auth = FirebaseAuth.getInstance();
-      intent = getIntent();
-        name= intent.getStringExtra("idd");
+        intent = getIntent();
+        name = intent.getStringExtra("idd");
 
         //Toast.makeText(this, name+"show", Toast.LENGTH_SHORT).show();
-    database.getReference().child("Group")
-            .child(name)
-            .child("member")
-            .addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    list.clear();
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        Users users = snapshot1.getValue(Users.class);
-                        users.setUserID(snapshot1.getKey());
-                       // if(!snapshot1.getKey().equals(FirebaseAuth.getInstance().getUid())) {
-                            list.add(users);
-                      //  }
+        database.getReference().child("Group")
+                .child(name)
+                .child("member")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        list.clear();
+                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                            String memberId = snapshot1.getKey();
+
+                            database.getReference().child("Users").child(memberId)
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot userSnapshot) {
+                                            if (userSnapshot.exists()) {
+                                                Users user = userSnapshot.getValue(Users.class);
+                                                user.setUserID(memberId);
+                                                list.add(user);
+                                                memberAdapter.notifyDataSetChanged();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                                    });
+                        }
                     }
-                    memberAdapter.notifyDataSetChanged();
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        // Handle error
+                    }
+                });
 
-                }
-
-    });
     setContentView(binding.getRoot());
     }
 }

@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="11dp"
         app:cardBackgroundColor="#080A18"
-        app:cardCornerRadius="20dp"
         app:cardElevation="11dp"
         android:outlineAmbientShadowColor="@color/white"
         android:outlineSpotShadowColor="@color/white"
@@ -35,17 +34,13 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
-                android:text="adesh"
-                android:textColor="@color/white"
+                android:textColor="#FF9800"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vtitle" />
+                app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
             <ImageView
                 android:id="@+id/exoplayerimage"
@@ -61,14 +56,16 @@
 
             <TextView
                 android:id="@+id/vtitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:maxLines="2"
+                android:layout_marginEnd="39dp"
                 android:text="math for class 12 probability"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/exoplayerimage" />
 
@@ -78,16 +75,54 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+
+
                 android:background="@drawable/signbg"
-
-
                 android:gravity="center"
                 android:text="Join"
                 android:textColor="@color/white"
                 android:textSize="15dp"
-                app:backgroundTint="#130CE8"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+            <TextView
+                android:id="@+id/textView57"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:maxLines="2"
+                android:text="TextView"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vtitle" />
+
+            <TextView
+                android:id="@+id/textView58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="700"
+                android:textColor="#4CAF50"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/button2"
+                app:layout_constraintStart_toStartOf="@+id/button2"
+                app:layout_constraintTop_toBottomOf="@+id/exoplayerimage" />
+
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹"
+                android:layout_marginTop="4dp"
+                android:textColor="#4CAF50"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/textView58"
+                app:layout_constraintTop_toBottomOf="@+id/exoplayerimage" />
 
 
             />

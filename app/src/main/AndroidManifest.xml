@@ -11,12 +11,37 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/lavkushbind"
-        android:label="Blanklearn"
+        android:icon="@drawable/blv"
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
-        tools:targetApi="31">
+        android:label="@string/app_name"
+        tools:replace="android:label"
+
+    tools:targetApi="31">
+        <activity
+            android:name="com.example.chat.photoview"
+            android:screenOrientation="portrait"
+
+        android:exported="false" />
+        <activity
+            android:name="com.example.chat.FullScreenImageActivity"
+            android:screenOrientation="portrait"
+
+            android:exported="false" />
+        <activity
+            android:name="com.example.chat.Chat_list_Activity"
+            android:screenOrientation="portrait"
+
+            android:exported="false" />
+        <activity
+            android:name="com.example.payment.razorpayActivity"
+            android:screenOrientation="portrait"
+
+            android:exported="false" />
+        <activity
+            android:name="com.example.home.StoryActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -30,6 +55,8 @@
 
         <activity
             android:name="com.example.profile.ProActivity"
+            android:screenOrientation="portrait"
+
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -37,18 +64,23 @@
         </activity>
         <activity
             android:name="com.example.chat.Member"
+            android:screenOrientation="portrait"
+
             android:exported="false" />
         <activity
             android:name="com.example.loginandsignup.login"
+            android:screenOrientation="portrait"
+
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-        android:name="com.example.payment.Test"
+            android:name="com.example.loginandsignup.FlashActivity"
+            android:screenOrientation="portrait"
 
-        android:exported="true">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,15 +95,24 @@
         <!-- android:exported="false" /> -->
         <activity
             android:name="com.example.loginandsignup.signup"
+
+            android:screenOrientation="portrait"
+
             android:exported="false" />
         <activity
             android:name="com.example.home.MainActivity"
+            android:screenOrientation="portrait"
+
             android:exported="false" />
         <activity
             android:name="com.example.payment.PaymentActivity"
+            android:screenOrientation="portrait"
+
             android:exported="false" />
         <activity
             android:name="com.example.chat.GroupChat"
+            android:screenOrientation="portrait"
+
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -79,9 +120,13 @@
         </activity>
         <activity
             android:name="com.example.chat.ChatAA"
+            android:screenOrientation="portrait"
+
             android:exported="false" />
         <activity
             android:name="com.example.home.post2Activity"
+            android:screenOrientation="portrait"
+
             android:exported="false" />
 
         <meta-data

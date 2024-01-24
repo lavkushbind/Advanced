@@ -27,22 +27,19 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="adesh"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/exoplayerimage"
-                app:layout_constraintTop_toBottomOf="@+id/vtitle" />
-
+                app:layout_constraintTop_toBottomOf="@+id/textView59" />
             <ImageView
                 android:id="@+id/exoplayerimage"
                 android:layout_width="160dp"
                 android:layout_height="100dp"
-
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
@@ -64,11 +61,24 @@
                 android:maxLines="2"
                 android:text="euiwifhwefklwjhegwgefhjwelwJHEFHWGKLKEFJwvhflhkgfiwelhfkwgkfljkwbhvwlkjbkhwelw"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/exoplayerimage"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView59"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textSize="10dp"
+                android:text="TextView"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/exoplayerimage"
+                app:layout_constraintTop_toBottomOf="@+id/vtitle" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

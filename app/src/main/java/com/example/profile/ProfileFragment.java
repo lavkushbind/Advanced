@@ -1,9 +1,11 @@
 package com.example.profile;
+import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 import static com.google.android.material.color.utilities.MaterialDynamicColors.error;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,6 +32,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.blank_learn.dark.R;
 import com.blank_learn.dark.databinding.FragmentProfileBinding;
+import com.example.home.Story_model;
 import com.example.home.profile_homeadapter;
 import com.example.payment.PostFragment;
 import com.example.home.homeadapter;
@@ -49,6 +52,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -57,21 +61,31 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
+
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
     FirebaseAuth auth;
     FirebaseStorage storage;
+    String instagramUrl;
+    String facebookUrl;
+    Intent intent;
+    String linkedinUrl;
+    String tweeterUrl;
     DatabaseReference databaseReference;
     FirebaseDatabase database;
     ArrayList<postmodel> list;
     Users users;
+    private static final int PICK_VIDEO_REQUEST = 1;
 
+    private StorageReference storageReference;
     public ProfileFragment() {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
         auth = FirebaseAuth.getInstance();
         storage=FirebaseStorage.getInstance();
         database=FirebaseDatabase.getInstance();
@@ -80,87 +94,115 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
+        storageReference = FirebaseStorage.getInstance().getReference().child("story");
 
-            binding.fb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bitmap screenshot = takeScreenshot(binding.getRoot()); // Use the root view from binding
-                    String filename = "screenshot_" + System.currentTimeMillis();
-                    saveScreenshot(screenshot, filename);
-                    File screenshotFile = new File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), filename + ".png");
-                    shareScreenshot(screenshotFile);
+
+
+        binding.Share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap screenshot = takeScreenshot(binding.getRoot()); // Use the root view from binding
+                String filename = "screenshot_" + System.currentTimeMillis();
+                saveScreenshot(screenshot, filename);
+                File screenshotFile = new File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), filename + ".png");
+                shareScreenshot(screenshotFile, "https://play.google.com/store/apps/details?id=com.blank_learn.dark&hl=en_IN&gl=US&pli=1"); // Add your link here
+            }
+
+            private Bitmap takeScreenshot(View rootView) {
+                rootView.setDrawingCacheEnabled(true);
+                Bitmap bitmap = Bitmap.createBitmap(rootView.getDrawingCache());
+                rootView.setDrawingCacheEnabled(false);
+                return bitmap;
+            }
+
+            private void shareScreenshot(File screenshotFile, String link) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("image/png");
+                Uri imageUri = FileProvider.getUriForFile(requireContext(), requireContext().getPackageName() + ".provider", screenshotFile); // Use screenshotFile
+                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+
+                // Add link to the text of the sharing intent
+                String shareText = "Experience the future of live learning by downloading the Blanklearn App! Explore a revolutionary approach that redefines the way you learn in real-time: " + link;
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+
+                startActivity(Intent.createChooser(shareIntent, "Share Screenshot"));
+            }
+
+            private void saveScreenshot(Bitmap screenshot, String filename) {
+                File imagePath = new File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), filename + ".png");
+
+                try {
+                    FileOutputStream fos = new FileOutputStream(imagePath);
+                    screenshot.compress(Bitmap.CompressFormat.PNG, 100, fos); // Use screenshot instead of bitmap
+                    fos.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+            }
+        });
 
-                private Bitmap takeScreenshot(View rootView) {
-                    rootView.setDrawingCacheEnabled(true); // Use rootView instead of view
-                    Bitmap bitmap = Bitmap.createBitmap(rootView.getDrawingCache()); // Use rootView instead of view
-                    rootView.setDrawingCacheEnabled(false); // Use rootView instead of view
-                    return bitmap;
-                }
-//            private void shareScreenshot(File screenshotFile) {
-//                String linkUrl = "https://play.google.com/store/apps/details?id=com.blank_learn.dark&hl=en_IN&gl=US";
-//                String htmlContent = "<a href=\"" + linkUrl + "\">Click here to visit the link</a>";
-//
-//                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//                shareIntent.setType("text/html");
-//                shareIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(htmlContent));
-//                shareIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(requireContext(), requireContext().getPackageName() + ".provider", screenshotFile));
-//                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                startActivity(Intent.createChooser(shareIntent, "Share Screenshot"));
-//            }
+        list = new ArrayList<>();
 
-                private void shareScreenshot(File screenshotFile) {
-                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                    shareIntent.setType("image/png");
-                    Uri imageUri = FileProvider.getUriForFile(requireContext(), requireContext().getPackageName() + ".provider", screenshotFile); // Use screenshotFile
-                    shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-                    startActivity(Intent.createChooser(shareIntent, "Share Screenshot"));
-                }
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String currentUserId = currentUser != null ? currentUser.getUid() : "";
 
-                private void saveScreenshot(Bitmap screenshot, String filename) {
-                    File imagePath = new File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), filename + ".png");
+        profile_post_adapter homeadapter = new profile_post_adapter(list, getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true);
+        binding.profilePost.setLayoutManager(layoutManager);
+        binding.profilePost.setAdapter(homeadapter);
+        binding.profilePost.scrollToPosition(homeadapter.getItemCount() - 1);
+        layoutManager.setStackFromEnd(true);
 
-                    try {
-                        FileOutputStream fos = new FileOutputStream(imagePath);
-                        screenshot.compress(Bitmap.CompressFormat.PNG, 100, fos); // Use screenshot instead of bitmap
-                        fos.flush();
-                        fos.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            list = new ArrayList<>();
-            profile_homeadapter profile_homeadapter = new profile_homeadapter(list, getContext());
-            LinearLayoutManager linearLayoutManage = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true);
-            binding.recyclerProfile.setLayoutManager(linearLayoutManage);
-            binding.recyclerProfile.setAdapter(profile_homeadapter);
-            linearLayoutManage.setStackFromEnd(true);
-
-
-
-        database.getReference().child("posts").orderByChild(auth.getUid()).equalTo(auth.getUid()).addValueEventListener(new ValueEventListener() {
+        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.child("postVideo").getValue() == null) {
+                        continue;
+                    }
                     postmodel postmodel = dataSnapshot.getValue(postmodel.class);
                     postmodel.setPostid(dataSnapshot.getKey());
 
-                    list.add(postmodel);
+                    if (postmodel.getPostedBy().equals(currentUserId)) {
+                        list.add(postmodel);
+                    }
                 }
-                profile_homeadapter.notifyDataSetChanged();
+                homeadapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle onCancelled
             }
         });
+binding.profilepic.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("video/*");
+        startActivityForResult(intent,52);
+    }
+});
 
 
 
-        database.getReference()
+
+binding.uploadbtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, new PostFragment());
+
+        transaction.addToBackStack(null); // Optional: Adds the transaction to the back stack
+        transaction.commit();
+
+    }
+});
+
+
+database.getReference()
                     .child("Users")
                     .child(auth.getUid())
                     .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -169,17 +211,22 @@ public class ProfileFragment extends Fragment {
                             if (snapshot.exists()) {
                                 Users user = snapshot.getValue(Users.class);
                                 Picasso.get().load(user.getCoverpic())
-                                        .placeholder(R.drawable.lavkushbind)
+                                        .placeholder(R.drawable.backprofile)
                                         .into(binding.coverpic);
                                 Picasso.get().load(user.getProfilepic())
-                                        .placeholder(R.drawable.profileuser)
+                                        .placeholder(R.drawable.userprofile)
                                         .into(binding.profilepic);
                                 binding.Username.setText(user.getName());
                                 binding.bio.setText(user.getBio());
-                                binding.fbtext.setText(user.getFb());
-                                binding.linkedintext.setText(user.getLinkedin());
-                                binding.instatext.setText(user.getInstagram());
-                                binding.twittertext.setText(user.getTwitter());
+                                facebookUrl=(user.getFb());
+                                linkedinUrl=(user.getLinkedin());
+                                instagramUrl =(user.getInstagram());
+                                if (instagramUrl != null && !instagramUrl.isEmpty()) {
+                                    Picasso.get().load(instagramUrl).into(binding.instagram);
+                                } else {
+                                    binding.instagram.setVisibility(View.GONE);
+                                }
+                               tweeterUrl=(user.getTwitter());
                                 binding.profesiontext.setText(user.getProfesion());
                                 binding.emailtext.setText(user.getEmail());
                             }
@@ -249,32 +296,40 @@ public class ProfileFragment extends Fragment {
                     startActivityForResult(intent, 11);
                 }
             });
-            binding.instatext.setOnClickListener(new View.OnClickListener() {
+            binding.instagram.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(users.getInstagram()));
-                    startActivity(urlIntent);
+                    openLink(instagramUrl);
+
                 }
             });
-            binding.linkedintext.setOnClickListener(new View.OnClickListener() {
+//            binding.coverpic.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    openLink("https://chat.openai.com/c/3680c290-d6b1-484f-b60b-2b6849721cb8");
+//                }
+//
+//
+//            });
+            binding.linked.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(users.getLinkedin()));
-                    startActivity(urlIntent);
+                    openLink(linkedinUrl);
+
                 }
             });
-            binding.fbtext.setOnClickListener(new View.OnClickListener() {
+            binding.face.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(users.getFb()));
-                    startActivity(urlIntent);
+                    openLink(facebookUrl);
+
                 }
             });
-            binding.twittertext.setOnClickListener(new View.OnClickListener() {
+            binding.tweet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(users.getTwitter()));
-                    startActivity(urlIntent);
+                    openLink(tweeterUrl);
+
                 }
             });
 
@@ -291,7 +346,20 @@ public class ProfileFragment extends Fragment {
             return binding.getRoot();
         }
 
-        @Override
+    private void openVideoPicker() {
+        Intent intent = new Intent();
+        intent.setType("video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Video"), PICK_VIDEO_REQUEST);
+    }
+    private void openLink(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
+    }
+
+
+    @Override
         public boolean
         onOptionsItemSelected(@NonNull MenuItem item)
         {
@@ -308,6 +376,11 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
             super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == PICK_VIDEO_REQUEST && resultCode == getActivity().RESULT_OK && data != null && data.getData() != null) {
+//                Uri videoUri = data.getData();
+////                uploadVideoToFirebase(videoUri);
+            }
+
             if (requestCode == 22) {
                 if (data.getData() != null) {
                     Uri uri = data.getData();
@@ -326,15 +399,113 @@ public class ProfileFragment extends Fragment {
                         }
                     });
                 }
-            } else {
+            }
+//            if (requestCode == 52) {
+//                if (data.getData() != null) {
+//                    Uri uri = data.getData();
+//
+//                    final StorageReference storageReference = storage.getReference().child("Story_videos").child(FirebaseAuth.getInstance().getUid());
+//
+//                    // Create a ProgressDialog
+//                    ProgressDialog progressDialog = new ProgressDialog(getActivity());
+//                    progressDialog.setMessage("Uploading...");
+//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//                    progressDialog.setCancelable(false);
+//                    progressDialog.show();
+//
+//                    storageReference.putFile(uri)
+//                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                                @Override
+//                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                                    storageReference.getDownloadUrl()
+//                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                                @Override
+//                                                public void onSuccess(Uri downloadUri) {
+//                                                    // Save download URL to the Realtime Database
+//                                                    String uid = FirebaseAuth.getInstance().getUid();
+//                                                    DatabaseReference databaseReference = database.getReference().child("Story").push().child(uid).child("postvideo");
+//                                                    String key = databaseReference.push().getKey();
+//                                                    databaseReference.child(key).setValue(downloadUri.toString());
+//
+//                                                    // Dismiss the ProgressDialog on success
+//                                                    progressDialog.dismiss();
+//                                                }
+//                                            });
+//                                }
+//                            })
+//                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//                                @Override
+//                                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+//                                    // Update the ProgressDialog with the upload progress
+//                                    float percent = (100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+//                                    progressDialog.setProgress((int) percent);
+//                                }
+//                            });
+//                }
+//            }
+         else if (requestCode == 52) {
                 if (data.getData() != null) {
+                    Uri uri = data.getData();
+
+                    final StorageReference storageReference = storage.getReference().child("Story_videos").child(FirebaseAuth.getInstance().getUid());
+
+                    // Create a ProgressDialog
+                    ProgressDialog progressDialog = new ProgressDialog(getActivity());
+                    progressDialog.setMessage("Uploading...");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+
+                    storageReference.putFile(uri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    storageReference.getDownloadUrl()
+                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri downloadUri) {
+                                                    // Generate a unique storyid
+                                                    String storyId = database.getReference().push().getKey();
+
+                                                    // Create a Story_model object
+                                                    Story_model storyModel = new Story_model(FirebaseAuth.getInstance().getUid(), "", downloadUri.toString(), storyId);
+
+                                                    // Save Story_model object to the Realtime Database
+                                                    DatabaseReference databaseReference = database.getReference().child("stories").child(storyId);
+                                                    databaseReference.setValue(storyModel);
+
+                                                    // Dismiss the ProgressDialog on success
+                                                    progressDialog.dismiss();
+                                                }
+                                            });
+                                }
+                            })
+                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                    // Update the ProgressDialog with the upload progress
+                                    float percent = (100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                                    progressDialog.setProgress((int) percent);
+                                }
+                            });
+                }
+            }
+
+
+
+
+
+            else {
+                if (data.getData() != null)
+
+//                if (intent != null && intent.getData() != null)
+                {
                     Uri uri = data.getData();
                     binding.profilepic.setImageURI(uri);
                     final StorageReference reference = storage.getReference().child("profilepic").child(FirebaseAuth.getInstance().getUid());
                     reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(getContext(), "Cover pic saved", Toast.LENGTH_SHORT).show();
                             reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
@@ -344,6 +515,7 @@ public class ProfileFragment extends Fragment {
                         }
                     });
                 }
+
             }
-        }
     }
+}

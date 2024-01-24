@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
+    android:background="#0A0D1C"
+    android:backgroundTint="#0A0D1C"
     android:padding="4dp">
 
 
@@ -29,7 +29,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="My Class"
-        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textColor="@color/background"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/profileImage"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,12 +52,11 @@
 
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/white"
-        android:clickable="true"
-        android:clipToOutline="true"
+
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back"
+        app:srcCompat="@drawable/uploadcolor"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
@@ -72,17 +72,13 @@
 
     <ImageView
         android:id="@+id/sendBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="1dp"
-        android:background="@color/white"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/messageAdapter"
-        app:srcCompat="@android:drawable/ic_menu_send" />
+        app:srcCompat="@drawable/msg" />
 
     <ImageView
         android:id="@+id/attachment"
@@ -99,28 +95,24 @@
     <EditText
         android:id="@+id/edtMessage"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-
-
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/signbg"
-        android:gravity="start"
-        android:hint="message..."
-
-
-        android:imeOptions="actionDone"
+        android:background="@drawable/edit_text_background"
+        android:gravity="center|start"
+        android:hint="Message... "
         android:inputType="textMultiLine"
-        android:maxLines="5"
+        android:maxLines="50"
+        android:minHeight="50dp"
         android:minLines="1"
         android:paddingLeft="30dp"
-        android:paddingTop="5dp"
+        android:paddingTop="0dp"
         android:scrollbars="vertical"
-        android:textColor="@color/blackk"
-        app:backgroundTint="#DCDDE1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendBtn"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -138,13 +130,13 @@
         android:id="@+id/sendimg_btn"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="6dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendBtn"
-        app:layout_constraintTop_toBottomOf="@+id/messageAdapter"
-        app:srcCompat="@drawable/camera" />
+        app:layout_constraintTop_toTopOf="@+id/sendBtn"
+        app:srcCompat="@drawable/gallery" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

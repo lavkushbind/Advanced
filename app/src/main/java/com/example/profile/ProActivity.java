@@ -1,4 +1,5 @@
 package com.example.profile;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.blank_learn.dark.R;
 import com.blank_learn.dark.databinding.ActivityProBinding;
 import com.example.chat.ChatAA;
+import com.example.home.MainActivity;
 import com.example.home.homeadapter;
+import com.example.home.post2Activity;
 import com.example.loginandsignup.Users;
+import com.example.loginandsignup.signup;
 import com.example.payment.postmodel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +33,7 @@ public class ProActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
+    Context context;
     ActivityProBinding binding;
     String name;
     String fb;
@@ -44,9 +49,7 @@ public class ProActivity extends AppCompatActivity {
         name = intent.getStringExtra("name");
         bio = findViewById(R.id.bio);
         list= new ArrayList<>();
-        //Bundle bundle= getIntent().getExtras();
-        //ReceiversName = bundle.getString("name");
-        // binding.Username.setText(getIntent().getStringExtra("name"));
+
         binding = ActivityProBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         database  = FirebaseDatabase.getInstance();
@@ -63,9 +66,9 @@ public class ProActivity extends AppCompatActivity {
                 list.clear();
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
                     postmodel postmodel =dataSnapshot.getValue(postmodel.class);
-                    postmodel.setPostid(dataSnapshot.getKey());
-
-                    list.add(postmodel);
+                    if (postmodel != null && dataSnapshot.getKey().equals(name))
+                    { list.add(postmodel);
+                }
                 }
                 homeadapter.notifyDataSetChanged();
             }
@@ -96,20 +99,38 @@ public class ProActivity extends AppCompatActivity {
 
             }
         });
+        binding.button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new Intent
+                Intent intent = new Intent(ProActivity.this, ChatAA.class);
+
+                // Add extra data to the Intent
+                intent.putExtra("name", name);
+
+                // Start the new activity
+                startActivity(intent);
+            }
+        });
         binding.bio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String shareFact = bio.getText().toString();
-                Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(shareFact));
-                startActivity(urlIntent);
+//                String shareFact = bio.getText().toString();
+//                Intent urlIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(shareFact));
+//                startActivity(urlIntent);
             }
         });
+
         database.getReference().child("Users").child(name).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()){
                             Users user= snapshot.getValue(Users.class);
-                            Picasso.get().load(user.getCoverpic()).placeholder(R.drawable.lavkushbind).into(binding.coverpic);
-                            Picasso.get().load(user.getProfilepic()).placeholder(R.drawable.profileuser).into(binding.profilepic);
+                            Picasso.get().load(user.getCoverpic())
+                                    .placeholder(R.drawable.backprofile)
+                                    .into(binding.coverpic);
+                            Picasso.get().load(user.getProfilepic())
+                                    .placeholder(R.drawable.userprofile)
+                                    .into(binding.profilepic);
                             binding.emailtext.setText(user.getEmail());
                             binding.fbtext.setText(user.getFb());
                             binding.linkedintext.setText(user.getLinkedin());
@@ -125,6 +146,32 @@ public class ProActivity extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
+
+
+        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.child("postVideo").getValue() == null) {
+                        continue;
+                    }
+                    postmodel postmodel = dataSnapshot.getValue(postmodel.class);
+                    postmodel.setPostid(dataSnapshot.getKey());
+
+                    if (postmodel.getPostedBy().equals(name)) {
+                        list.add(postmodel);
+                    }
+                }
+                homeadapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle onCancelled
+            }
+        });
+
     }
 
 }
