@@ -5,32 +5,32 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/newhome"
-        android:title=""
+        android:title="home"
 
         />
     <item
         android:id="@+id/search"
         android:icon="@drawable/searchbar"
-        android:title=""
+        android:title="search"
 
         />
     <item
         android:id="@+id/classs"
         android:icon="@drawable/courseicon"
-        android:title=""
+        android:title="courses"
 
         />
 
     <item
         android:id="@+id/notificationid"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title=""
+        android:title="notification"
 
         />
     <item
         android:id="@+id/profile"
         android:icon="@drawable/newuser"
-        android:title=""
+        android:title="profile"
         />
 
 

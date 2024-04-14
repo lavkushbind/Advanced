@@ -3,17 +3,18 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
-//    }
+        maven { url 'https://jitpack.io' }
+
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
-        classpath 'com.google.gms:google-services:4.3.15'
+        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.google.gms:google-services:4.4.1'
     }
 }
 plugins {
-    id 'com.android.application' version '7.3.1' apply false
-    id 'com.android.library' version '7.3.1' apply false
+    id 'com.android.application' version '7.4.2' apply false
+    id 'com.android.library' version '7.4.2' apply false
 }
 
 

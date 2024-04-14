@@ -6,29 +6,81 @@
     android:background="#0A0D1C"
     android:backgroundTint="#0A0D1C">
 
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="11dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/linearLayout2"
+        android:src="@drawable/folder"
+        android:visibility="visible" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:backgroundTint="#0A1E91"
         android:background="@drawable/edit_text_background"
+        android:backgroundTint="#0A1E91"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="280dp"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img"
-            android:visibility="gone" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageview20"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/bookmark"
+
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/image"
+                app:layout_constraintTop_toBottomOf="@+id/image" />
+
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="260dp"
+                android:layout_height="170dp"
+
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/folder"
+                android:scaleType="centerCrop"
+                android:visibility="visible"
+                app:barrierMargin="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:foregroundGravity="right"
+
+                android:visibility="visible"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:srcCompat="@drawable/uploadcolor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <TextView
             android:id="@+id/senmsg"
@@ -39,11 +91,12 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="10dp"
 
+            android:paddingBottom="10dp"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="normal" />
+
 
     </LinearLayout>
 

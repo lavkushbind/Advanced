@@ -35,9 +35,9 @@ import java.util.UUID;
 
 public class PostFragment extends Fragment{
 FragmentPostBinding binding;
-    Uri uri;
+Uri uri;
 String randomKey;
-    String randomKey2;
+String randomKey2;
 
 FirebaseAuth auth;
 FirebaseDatabase database;

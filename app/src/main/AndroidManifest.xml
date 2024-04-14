@@ -4,41 +4,66 @@
     package="com.blank_learn.dark">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/blv"
+        android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
-        android:label="@string/app_name"
         tools:replace="android:label"
+        tools:targetApi="31">
+        <activity
+            android:name="com.example.home.student_slider"
+            android:exported="false"
+            android:label="@string/title_activity_student_slider"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.example.loginandsignup.slideActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
 
-    tools:targetApi="31">
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.example.chat.DailogActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.FullScreenDialog" />
+        <activity
+            android:name="com.example.home.about_Activity"
+            android:exported="false" />
         <activity
             android:name="com.example.chat.photoview"
-            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat">
 
-        android:exported="false" />
+            <!-- other activity configurations -->
+        </activity>
         <activity
             android:name="com.example.chat.FullScreenImageActivity"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.chat.Chat_list_Activity"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.payment.razorpayActivity"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.home.StoryActivity"
             android:exported="false" />
@@ -55,32 +80,28 @@
 
         <activity
             android:name="com.example.profile.ProActivity"
-            android:screenOrientation="portrait"
-
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name="com.example.chat.Member"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.loginandsignup.login"
-            android:screenOrientation="portrait"
-
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name="com.example.loginandsignup.FlashActivity"
-            android:screenOrientation="portrait"
-
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -95,39 +116,32 @@
         <!-- android:exported="false" /> -->
         <activity
             android:name="com.example.loginandsignup.signup"
-
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.home.MainActivity"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.payment.PaymentActivity"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.chat.GroupChat"
-            android:screenOrientation="portrait"
-
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name="com.example.chat.ChatAA"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.home.post2Activity"
-            android:screenOrientation="portrait"
-
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,8 +1,4 @@
 package com.example.home;
-import static android.os.Build.VERSION_CODES.R;
-
-import static com.razorpay.AppSignatureHelper.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,16 +11,13 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager.widget.ViewPager;
-
-import com.blank_learn.dark.R;
 import com.blank_learn.dark.databinding.FragmentHomeBinding;
 import com.example.chat.Chat_list_Activity;
 import com.example.dark.Search_course_adapter;
 import com.example.loginandsignup.Users;
 import com.example.loginandsignup.login;
+import com.example.loginandsignup.slideActivity;
 import com.example.payment.PostFragment;
 import com.example.payment.SliderAdapter;
 import com.example.payment.SliderData;
@@ -41,6 +34,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 public class HomFragment extends Fragment {
     FragmentHomeBinding binding;
@@ -85,14 +79,41 @@ public class HomFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+        database.getReference().child("Poster").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String imageUrl = snapshot.getValue(String.class);
+
+                    Picasso.get().load(imageUrl).into(binding.studentPost);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         homeadapter homeadapter3 = new homeadapter(list, getContext());
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true);
         binding.postRV.setLayoutManager(layoutManager2);
         binding.postRV.setAdapter(homeadapter3);
-//        binding.postRV.scrollToPosition(homeadapter3.getItemCount() - 1);
-//        layoutManager2.setStackFromEnd(true);
-
+       binding.postRV.scrollToPosition(homeadapter3.getItemCount() - 1);
+         layoutManager2.setStackFromEnd(true);
+         binding.poster.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(getActivity(), slideActivity.class);
+                 startActivity(intent);
+             }
+         });
+        binding.studentPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), student_slider.class);
+                startActivity(intent);
+            }
+        });
         database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -107,6 +128,7 @@ public class HomFragment extends Fragment {
 //                    list.add(postmodel);
                 }
                 homeadapter3.notifyDataSetChanged();
+
             }
 
             @Override
@@ -131,6 +153,8 @@ public class HomFragment extends Fragment {
                     postmodel.setPostid(dataSnapshot.getKey());
                     list.add(postmodel);
                 }
+                Collections.shuffle(list);
+
                 homeadapter2.notifyDataSetChanged();
             }
 
@@ -222,6 +246,7 @@ public class HomFragment extends Fragment {
                     postmodel.setPostid(dataSnapshot.getKey());
                         list.add(postmodel);
                     }
+                Collections.shuffle(list);
 
                 homeadapter.notifyDataSetChanged();
             }
@@ -244,6 +269,8 @@ public class HomFragment extends Fragment {
                     storyModel.setStoryid(dataSnapshot.getKey());
                     story_list.add(storyModel);
                 }
+                Collections.shuffle(list);
+
                 storyAdapter.notifyDataSetChanged();
             }
 

@@ -1,4 +1,5 @@
 package com.example.chat;
+
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -84,6 +85,13 @@ public class Chat_list_Activity extends AppCompatActivity {
                                                         list.add(user);
                                                         memberAdapter.notifyDataSetChanged();
                                                     }
+
+//                                                    else {
+//                                                        // Data does not exist, show a Toast message
+//                                                        list.clear();
+//                                                        memberAdapter.notifyDataSetChanged();
+//                                                        Toast.makeText(Chat_list_Activity.this, "No chat available", Toast.LENGTH_SHORT).show();
+//                                                    }
                                                 }
 
                                                 @Override

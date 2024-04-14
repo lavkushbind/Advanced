@@ -14,6 +14,15 @@ public class Users {
     private  String fb;
     private String save;
     private String buy;
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getSave() {
         return save;
@@ -93,11 +102,12 @@ public class Users {
     }
 
 
-    public Users(String name, String email, String userID, String pass, String coverpic, String profilepic, String bio, String profesion, int followercount, String uid) {
+    public Users(String name,String phone, String email, String userID, String pass, String coverpic, String profilepic, String bio, String profesion, int followercount, String uid) {
         this.name = name;
         this.email = email;
         this.userID = userID;
         this.pass = pass;
+        this.phone=phone;
         this.coverpic = coverpic;
         this.profilepic = profilepic;
         this.bio = bio;

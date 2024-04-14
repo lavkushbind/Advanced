@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.example.chat.DailogActivity"
+android:padding="16dp">
+
+<!-- Your dialog content goes here -->
+
+<TextView
+    android:id="@+id/deleteDialogTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Delete Message"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:layout_marginBottom="16dp"/>
+
+<TextView
+    android:id="@+id/deleteDialogMessage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Are you sure you want to delete this message?"
+    android:layout_below="@id/deleteDialogTitle"
+    android:layout_marginBottom="16dp"/>
+
+<Button
+    android:id="@+id/btnDelete"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Delete"
+    android:layout_below="@id/deleteDialogMessage"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="16dp"
+    android:background="?android:attr/selectableItemBackground"/>
+
+<Button
+    android:id="@+id/btnCancel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Cancel"
+    android:layout_below="@id/deleteDialogMessage"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="16dp"
+    android:layout_toEndOf="@id/btnDelete"
+    android:background="?android:attr/selectableItemBackground"/>
+</RelativeLayout>

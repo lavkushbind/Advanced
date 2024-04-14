@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -97,6 +98,13 @@ FragmentHelpBinding binding;
 
             }
         });
+        binding.imageView18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendEmail();
+
+            }
+        });
         binding.imageView11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,4 +133,27 @@ FragmentHelpBinding binding;
 
             return binding.getRoot();
 
+}
+
+    private void sendEmail() {
+        // Specify the recipient email address
+        String recipientEmail = "blanklearndark@gmail.com";
+
+        // Create an intent with the ACTION_SENDTO action
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+
+        // Set the data for the intent (mailto: recipientEmail)
+        emailIntent.setData(Uri.parse("mailto:" + recipientEmail));
+
+        // Set the subject for the email
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Question from the App User");
+
+        // Set the body of the email (You can pre-fill additional information here)
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Support Team,\n\n");
+
+        // Check if there is an email client available to handle the intent
+        if (emailIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Start the email client
+            startActivity(emailIntent);
+        }
 }}

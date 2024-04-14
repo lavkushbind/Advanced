@@ -18,7 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-public class Notification2Fragment extends Fragment {
+public class Notification2Fragment extends Fragment
+{
     RecyclerView recyclerView;
     ArrayList<NotificationModel> lists;
     FirebaseDatabase database;

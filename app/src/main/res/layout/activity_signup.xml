@@ -54,6 +54,28 @@
             android:textColorHint="@color/black"
             android:textSize="16sp" />
 
+
+
+        <EditText
+            android:id="@+id/phonebtn"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter your phone number"
+            android:paddingLeft="20sp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="16sp" />
+
+
+
+
+
+
         <EditText
             android:id="@+id/emailbtn"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"

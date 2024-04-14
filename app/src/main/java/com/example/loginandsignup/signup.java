@@ -28,7 +28,7 @@ import java.util.Date;
 public class signup extends AppCompatActivity {
     FirebaseAuth auth;
     ActivitySignupBinding binding;
-    EditText passbtn, emailbtn,namebtn;
+    EditText passbtn, emailbtn,namebtn,phonebtn;
     Button signupbtn;
     FirebaseDatabase database;
     TextView textView;
@@ -50,7 +50,9 @@ public class signup extends AppCompatActivity {
         passbtn = findViewById(R.id.pasbtn);
         namebtn =findViewById(R.id .namebtn);
        emailbtn = findViewById(R.id.emailbtn);
-       signupbtn = findViewById(R.id.signupbtn);
+        phonebtn = findViewById(R.id.phonebtn);
+
+        signupbtn = findViewById(R.id.signupbtn);
        binding.golog.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -60,7 +62,8 @@ public class signup extends AppCompatActivity {
        binding.signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
               public void onClick(View v) {
-                String email,pass,name;
+                String email,phone,pass,name;
+                phone=phonebtn.getText().toString();
 
                 email=emailbtn.getText().toString();
                 pass=passbtn.getText().toString();
@@ -71,21 +74,11 @@ public class signup extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful())  {
-                    modelfast users = new modelfast(name,email,pass);
+                    modelfast users = new modelfast(name,phone,email,pass);
                  String id = task.getResult().getUser().getUid();
                     database.getReference().child("Users").child(id).setValue(users);
                                     startActivity(new Intent(signup.this, MainActivity.class));
 
-//                            NotificationModel notificationModel = new NotificationModel();
-//                            notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
-//                            notificationModel.setNotificationAt(new Date().getTime());
-//                            notificationModel.setType("signup");
-//                            FirebaseDatabase.getInstance().getReference()
-//                                    .child("notification")
-//                                    .child(FirebaseAuth.getInstance().getUid())
-//                                    .push()
-//                                    .setValue(notificationModel);
-//
 
                         }
                         else{

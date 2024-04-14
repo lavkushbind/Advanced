@@ -1,12 +1,21 @@
 package com.example.loginandsignup;
 
 public class modelfast {
-    private String name,email,pass;
+    private String name,email,pass,phone;
 
-    public modelfast(String name, String email, String pass) {
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public modelfast(String name,String phone, String email, String pass) {
         this.name = name;
         this.email = email;
         this.pass = pass;
+        this.phone= phone;
     }
 
     public String getName() {

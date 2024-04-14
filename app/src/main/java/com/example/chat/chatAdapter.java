@@ -1,14 +1,19 @@
 package com.example.chat;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Environment;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -20,18 +25,27 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blank_learn.dark.R;
-import com.example.home.post2Activity;
-import com.google.android.exoplayer2.Renderer;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,32 +93,65 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         chatmodel chatmodel = list.get(position);{
             if (holder instanceof SenderViewHolder) {
+                ((SenderViewHolder) holder).delete_img.setOnClickListener(v -> {
+                    PopupMenu popupMenu = new PopupMenu(context, ((SenderViewHolder) holder).delete_img);
+                    popupMenu.inflate(R.menu.menu_chat_item);
+                    popupMenu.setOnMenuItemClickListener(item -> {
+                        if (item.getItemId() == R.id.imageView21) {
+                            showDeleteDialog(chatmodel);
+
+                            return true;
+                        }
+                        return false;
+                    });
+                    popupMenu.show();
+                });
+            } else if (holder instanceof ReceiverViewHolder) {
+
+            }
+
                 ((SenderViewHolder) holder).senderMsg.setText(chatmodel.getMasseg());
                 linkifyText(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
                 setLongPressListener(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
-
-                // Check if it's an image message
                 if (chatmodel.isImageUrl()) {
-                    // Load and display the image using Picasso
-                    loadImageWithPicasso(chatmodel.getMasseg(), ((SenderViewHolder) holder).senderImage);
+                    loadImageWithPicasso(chatmodel.getMasseg(), ((SenderViewHolder) holder).senderImage, R.drawable.gallery);
+
                     ((SenderViewHolder) holder).senderImage.setVisibility(View.VISIBLE);
+                    ((SenderViewHolder) holder).imageView2.setVisibility(View.VISIBLE);
                     ((SenderViewHolder) holder).senderMsg.setVisibility(View.GONE);
-                } else {
+                }
+
+                else {
                     ((SenderViewHolder) holder).senderImage.setVisibility(View.GONE);
+                    ((SenderViewHolder) holder).imageView2.setVisibility(View.GONE);
+
                     ((SenderViewHolder) holder).senderMsg.setVisibility(View.VISIBLE);
                 }
-                ((SenderViewHolder) holder).senderImage.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String imageUrl = chatmodel.getMasseg();
-                        if (imageUrl != null && chatmodel.isImageUrl()) {
-                            // Show the image in full screen
-                            showImageFullScreen(imageUrl);
-                        }
-                    }
-                });
+                if (holder instanceof SenderViewHolder) {
 
-            } else if (holder instanceof ReceiverViewHolder) {
+
+//                    ((SenderViewHolder)holder).imageView21s.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                        }
+//                    });
+
+
+                ((SenderViewHolder) holder).senderImage.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        if (chatmodel.isImageUrl()) {
+                            downloadImage(chatmodel.getMasseg());
+                            Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+                        }
+                        return true;
+
+                    }
+                });}
+
+            }
+             if (holder instanceof ReceiverViewHolder) {
                 ((ReceiverViewHolder) holder).receiverMsg.setText(chatmodel.getMasseg());
                 linkifyText(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
                 setLongPressListener(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
@@ -112,61 +159,331 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 // Check if it's an image message
                 if (chatmodel.isImageUrl()) {
                     // Load and display the image using Picasso
-                    loadImageWithPicasso(chatmodel.getMasseg(), ((ReceiverViewHolder) holder).receivedImage);
+                    loadImageWithPicasso(chatmodel.getMasseg(), ((ReceiverViewHolder) holder).receivedImage, R.drawable.gallery);
                     ((ReceiverViewHolder) holder).receivedImage.setVisibility(View.VISIBLE);
+                    ((ReceiverViewHolder) holder).imageView20.setVisibility(View.VISIBLE);
+
                     ((ReceiverViewHolder) holder).receiverMsg.setVisibility(View.GONE);
                 } else {
                     ((ReceiverViewHolder) holder).receivedImage.setVisibility(View.GONE);
+                    ((ReceiverViewHolder) holder).imageView20.setVisibility(View.GONE);
+
                     ((ReceiverViewHolder) holder).receiverMsg.setVisibility(View.VISIBLE);
                 }
 
 // Inside your adapter's onBindViewHolder method
-                ((ReceiverViewHolder) holder).receivedImage.setOnClickListener(new View.OnClickListener() {
+                ((ReceiverViewHolder)holder).imageView21r.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String imageUrl = chatmodel.getMasseg();
-                        if (imageUrl != null && chatmodel.isImageUrl()) {
-                            // Show the image in full screen
-                            showImageFullScreen(imageUrl);
-                        }
+//                        showDeleteConfirmationDialog(chatmodel.getMasseg());
                     }
                 });
+
+
+                ((ReceiverViewHolder) holder).receivedImage.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+//                        showOptionsDialog(chatmodel.getMasseg());
+
+                        if (chatmodel.isImageUrl()) {
+                            downloadImage(chatmodel.getMasseg());
+                            Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+                        }
+                        return true;
+
+                    }
+                });}
             }
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (chatmodel.isImageUrl()) {
-                        Intent intent = new Intent(context, photoview.class);
-                        intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_URL, chatmodel.getMasseg());
 
-                        if (context instanceof Activity) {
-                            ((Activity) context).startActivity(intent);
-                        } else {
-                            Log.e("Adapter", "Cannot start activity from non-Activity context");
-                        }
-                    }                    else if (holder.itemView instanceof TextView) {
-                        String websiteUrl = ((TextView) holder.itemView).getText().toString();
 
-                        if (!TextUtils.isEmpty(websiteUrl)) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl));
-                            if (intent.resolveActivity(context.getPackageManager()) != null) {
-                                context.startActivity(intent);
-                            } else {
-                                Toast.makeText(context, "No app available to handle the URL", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(v.getContext(), "URL is empty", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        // Handle other cases if needed
+
+
+
+    private void showDeleteDialog(chatmodel chatModel) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Delete Message")
+                .setMessage("Are you sure you want to delete this message?")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    // Call method to delete message from Firebase
+                    deleteMessageFromFirebase(chatModel);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+
+
+
+
+    private void deleteMessageFromFirebase(chatmodel chatModel) {
+        DatabaseReference messagesRef = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Personal_chat")
+                .child(chatModel.getMuid())
+                .child("mess")
+                .child(chatModel.getMasseg());
+
+        messagesRef.removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        // Message deleted successfully
+                        Log.d("DeleteMessage", "Message deleted successfully");
                     }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle failure to delete message
+                        Log.e("DeleteMessage", "Failed to delete message: " + e.getMessage());
+                    }
+                });
+    }
+
+//        chatmodel chatModel = list.get(position);
+
+//        if (holder instanceof SenderViewHolder) {
+//            SenderViewHolder senderViewHolder = (SenderViewHolder) holder;
+//
+//            senderViewHolder.senderMsg.setText(chatModel.getMasseg());
+//            linkifyText(senderViewHolder.senderMsg, chatModel.getMasseg());
+//            setLongPressListener(senderViewHolder.senderMsg, chatModel.getMasseg());
+//
+////            if (chatModel.isImageUrl()) {
+////                loadImageWithPicasso(chatModel.getMasseg(), senderViewHolder.senderImage);
+////                senderViewHolder.senderImage.setVisibility(View.VISIBLE);
+////                senderViewHolder.senderMsg.setVisibility(View.GONE);
+////                senderViewHolder.imageView2.setVisibility(View.VISIBLE); // Add download button visibility
+////            } else {
+////                senderViewHolder.senderImage.setVisibility(View.GONE);
+////                senderViewHolder.senderMsg.setVisibility(View.VISIBLE);
+////                senderViewHolder.imageView2.setVisibility(View.GONE); // Hide download button for non-image messages
+////            }
+////            if (chatModel.isImageUrl()) {
+////                loadImageWithPicasso(chatModel.getMasseg(), senderViewHolder.senderImage);
+////                if (senderViewHolder.senderImage != null) {
+////                    senderViewHolder.senderImage.setVisibility(View.VISIBLE);
+////                }
+////                if (senderViewHolder.senderMsg != null) {
+////                    senderViewHolder.senderMsg.setVisibility(View.GONE);
+////                }
+////            } else {
+////                if (senderViewHolder.senderImage != null) {
+////                    senderViewHolder.senderImage.setVisibility(View.GONE);
+////                }
+////                if (senderViewHolder.senderMsg != null) {
+////                    senderViewHolder.senderMsg.setVisibility(View.VISIBLE);
+////                }
+////            }
+//
+//// Similar checks for other places where you set the visibility of ImageView
+//            if (chatModel.isImageUrl()) {
+//                loadImageWithPicasso(chatModel.getMasseg(), senderViewHolder.senderImage);
+//
+//                // Check if senderImage is not null before setting OnClickListener
+//                if (senderViewHolder.senderImage != null) {
+//                    senderViewHolder.senderImage.setVisibility(View.VISIBLE);
+////                    senderViewHolder.senderImage.setOnClickListener(new View.OnClickListener() {
+////                        @Override
+////                        public void onClick(View v) {
+////                            String imageUrl = chatModel.getMasseg();
+////                            if (imageUrl != null && chatModel.isImageUrl()) {
+////                                // Show the image in full screen
+////                                showImageFullScreen(imageUrl);
+////                            }
+////                        }
+////                    });
+//                }
+//
+//                if (senderViewHolder.senderMsg != null) {
+//                    senderViewHolder.senderMsg.setVisibility(View.GONE);
+//                }
+//            } else {
+//                if (senderViewHolder.senderImage != null) {
+//                    senderViewHolder.senderImage.setVisibility(View.GONE);
+//                }
+//                if (senderViewHolder.senderMsg != null) {
+//                    senderViewHolder.senderMsg.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//
+//
+////            senderViewHolder.senderImage.setOnClickListener(new View.OnClickListener() {
+////                @Override
+////                public void onClick(View v) {
+////                    if (chatModel.isImageUrl()) {
+////                        showImageFullScreen(chatModel.getMasseg());
+////                    }
+////                }
+////            });
+//
+//            senderViewHolder.senderImage.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (chatModel.isImageUrl()) {
+//                        downloadImage(chatModel.getMasseg());
+//                    }
+//                }
+//            });
+//
+//        } else if (holder instanceof ReceiverViewHolder) {
+//            ReceiverViewHolder receiverViewHolder = (ReceiverViewHolder) holder;
+//
+//            receiverViewHolder.receiverMsg.setText(chatModel.getMasseg());
+//            linkifyText(receiverViewHolder.receiverMsg, chatModel.getMasseg());
+//            setLongPressListener(receiverViewHolder.receiverMsg, chatModel.getMasseg());
+//
+//            if (chatModel.isImageUrl()) {
+//                loadImageWithPicasso(chatModel.getMasseg(), receiverViewHolder.receivedImage);
+//                receiverViewHolder.receivedImage.setVisibility(View.VISIBLE);
+//                receiverViewHolder.receiverMsg.setVisibility(View.GONE);
+//                receiverViewHolder.imageView20.setVisibility(View.VISIBLE); // Add download button visibility
+//            } else {
+//                receiverViewHolder.receivedImage.setVisibility(View.GONE);
+//                receiverViewHolder.receiverMsg.setVisibility(View.VISIBLE);
+//                receiverViewHolder.imageView20.setVisibility(View.GONE); // Hide download button for non-image messages
+//            }
+//
+//            receiverViewHolder.receivedImage.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (chatModel.isImageUrl()) {
+//                        showImageFullScreen(chatModel.getMasseg());
+//                    }
+//                }
+//            });
+//
+//            receiverViewHolder.imageView20.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (chatModel.isImageUrl()) {
+//                        downloadImage(chatModel.getMasseg());
+//                    }
+//                }
+//            });
+//        }
+//
+//// Rest of the code remains unchanged
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (chatModel.isImageUrl()) {
+//                    Intent intent = new Intent(context, photoview.class);
+//                    intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_URL, chatModel.getMasseg());
+//
+//                    if (context instanceof Activity) {
+//                        ((Activity) context).startActivity(intent);
+//                    } else {
+//                        Log.e("Adapter", "Cannot start activity from non-Activity context");
+//                    }
+//                } else if (holder.itemView instanceof TextView) {
+//                    // ... existing code ...
+//                } else {
+//                    // ... existing code ...
+//                }
+//            }
+//        });
+//
+//    }
+
+    private void openFullDialogActivity() {
+        Intent intent = new Intent(context, DailogActivity.class);
+        context.startActivity(intent);
+    }
+
+
+    private void downloadImage(String imageUrl) {
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(imageUrl));
+        request.setTitle("File Download");
+        request.setDescription("Downloading...");
+
+        // Set the destination file path
+        String fileName = "Blanklearn";
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+
+        DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        if (downloadManager != null) {
+            // Enqueue the download
+            long downloadId = downloadManager.enqueue(request);
+
+            // Monitor the download status
+            BroadcastReceiver receiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+
+                    // Create a new Query
+                    DownloadManager.Query query = new DownloadManager.Query();
+                    query.setFilterById(downloadId);
+
+                    Cursor cursor = manager.query(query);
+                    if (cursor != null && cursor.moveToFirst()) {
+                        int statusColumnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                        int localUriColumnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI);
+
+                        // Check if the column indexes are valid
+                        if (statusColumnIndex >= 0 && localUriColumnIndex >= 0) {
+                            int status = cursor.getInt(statusColumnIndex);
+                            if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                                // Download completed successfully
+                                String filePath = cursor.getString(localUriColumnIndex);
+                                // Show a Toast indicating the file path
+                                Toast.makeText(context, "File downloaded: " + filePath, Toast.LENGTH_SHORT).show();
+//                                openDownloadedFile(context, filePath);
+
+                            } else {
+                                // Download failed or in progress
+                                Toast.makeText(context, "Image download failed or in progress", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    // Close the cursor to avoid resource leaks
+                    if (cursor != null && !cursor.isClosed()) {
+                        cursor.close();
+                    }
+
+                    // Unregister the receiver to avoid memory leaks
+                    context.unregisterReceiver(this);
                 }
-            });
+            };
 
-
+            context.registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        } else {
+            // Handle the case where DownloadManager is not available
+            Toast.makeText(context, "DownloadManager not available", Toast.LENGTH_SHORT).show();
         }
     }
+    private void openDownloadedFile(Context context, String filePath) {
+        Intent openFileIntent = new Intent(Intent.ACTION_VIEW);
+        File file = new File(filePath);
+
+        // Set the data and type for the intent
+        openFileIntent.setDataAndType(Uri.fromFile(file), getMimeType(file));
+
+        // Add flags to grant read permissions to the receiving app
+        openFileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        // Add the FLAG_ACTIVITY_NEW_TASK flag
+        openFileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // Try to start the activity to open the file
+        try {
+            context.startActivity(openFileIntent);
+        } catch (ActivityNotFoundException e) {
+            // Handle the case where no suitable app is installed to open the file
+            Toast.makeText(context, "No app to open the file", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private String getMimeType(File file) {
+        String extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(file).toString());
+        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+    }
+
 
     private void showImageFullScreen(String imageUrl) {
         Log.d("ShowFullScreen", "Context: " + context);
@@ -176,7 +493,7 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             dialog.setContentView(R.layout.dialog_fullscreen_image);
 
             ImageView fullScreenImageView = dialog.findViewById(R.id.fullScreenImageView);
-            loadImageWithPicasso(imageUrl, fullScreenImageView);
+            loadImageWithPicasso(imageUrl, fullScreenImageView, R.drawable.gallery);
 
             // Set a click listener on the image to close the dialog when clicked
             fullScreenImageView.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +508,7 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    private void loadImageWithPicasso(String imageUrl, ImageView imageView) {
+    private void loadImageWithPicasso(String imageUrl, ImageView imageView, int gallery) {
         Picasso.get().load(imageUrl).into(imageView);
     }
 
@@ -272,21 +589,31 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static class SenderViewHolder extends RecyclerView.ViewHolder {
         TextView senderMsg;
-        ImageView senderImage;
+
+        ImageView senderImage,imageView2,imageView21s,delete_img;
 
         public SenderViewHolder(@NonNull View itemView) {
             super(itemView);
             senderMsg = itemView.findViewById(R.id.senmsg);
             senderImage= itemView.findViewById(R.id.image);
+            imageView2= itemView.findViewById(R.id.imageView19);
+//            imageView21s= itemView.findViewById(R.id.imageView21);
+            delete_img= itemView.findViewById(R.id.imageView21);
+
         }
+
     }
 
     private static class ReceiverViewHolder extends RecyclerView.ViewHolder {
         TextView receiverMsg;
-        ImageView receivedImage;
+        ImageView receivedImage,imageView20,imageView21r;
         public ReceiverViewHolder(@NonNull View itemView) {
             super(itemView);
             receiverMsg = itemView.findViewById(R.id.recmsg);
+            imageView20= itemView.findViewById(R.id.imageView20);
+            imageView21r= itemView.findViewById(R.id.imageView21);
+
+
             receivedImage = itemView.findViewById(R.id.image); // Initialize the ImageView
 
         }

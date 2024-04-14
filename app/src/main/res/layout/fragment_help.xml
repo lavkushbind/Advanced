@@ -5,7 +5,8 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#0A0D1C"
+    android:backgroundTint="#0A0D1C"    >
 
     <EditText
         android:id="@+id/helpid"
@@ -21,8 +22,9 @@
 
         android:hint="     Tell us how can help"
         android:inputType="textMultiLine|textPersonName"
-        android:textColor="#1B1A1A"
-        android:textColorHint="#535151"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="16sp"
         app:backgroundTint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +63,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="we are constantly improving our product by listening to your feedback"
-        android:textColor="#040404"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -73,7 +75,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Could you describe your issue or suggetion"
-        android:textColor="#070101"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +88,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Its include payment issue or any technical issue"
-        android:textColor="#030303"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -112,4 +114,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sendhelp" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendhelp"
+        app:srcCompat="@drawable/gmail" />
+
+    <TextView
+        android:id="@+id/textView64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="187dp"
+        android:text="OR"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendhelp" />
+
+    <TextView
+        android:id="@+id/textView65"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Send your query on Gmail"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageView18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView64" />
 </androidx.constraintlayout.widget.ConstraintLayout>

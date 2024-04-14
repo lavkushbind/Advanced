@@ -90,7 +90,7 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
                 Checkout checkout = new Checkout();
 
                 // set your id as below
-                checkout.setKeyID("");
+                checkout.setKeyID("rzp_live_6vd9RApruseTAi");
 
                 // set image
                 checkout.setImage(R.drawable.lop);

@@ -5,6 +5,17 @@
     android:layout_height="wrap_content"
     android:background="#0B0E1E"
     android:backgroundTint="#0B0E1E">
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="11dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/linearLayout2"
+        android:src="@drawable/darklogo"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/linearLayout2"
 
@@ -24,11 +35,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/upload" />
+
+        <ImageView
             android:id="@+id/image"
             android:layout_width="280dp"
             android:layout_height="200dp"
             android:layout_margin="5dp"
             android:scaleType="centerCrop"
+            android:background="@drawable/folder"
 
             android:clickable="true"
             android:onClick="onTmageClick"

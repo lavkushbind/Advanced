@@ -174,13 +174,21 @@ public class ChatAA extends AppCompatActivity {
             }
         });
     }
-
     private void openImagePicker() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*"); // Set MIME type to all file types
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true); // Allow multiple file selection
         startActivityForResult(intent, REQUEST_IMAGE_PICK);
     }
+
+
+//    private void openImagePicker() {
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        intent.setType("*/*");
+//        startActivityForResult(intent, REQUEST_IMAGE_PICK);
+//    }
 
     private void sendMessage() {
         String message = binding.edtMessage.getText().toString().trim();
@@ -221,10 +229,25 @@ public class ChatAA extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+//        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
+//            Uri imageUri = data.getData();
+//            uploadImageToStorage(imageUri);
+//        }
         if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK && data != null) {
-            Uri imageUri = data.getData();
-            uploadImageToStorage(imageUri);
+            if (data.getClipData() != null) {
+                // Multiple images selected
+                int count = data.getClipData().getItemCount();
+                for (int i = 0; i < count; i++) {
+                    Uri imageUri = data.getClipData().getItemAt(i).getUri();
+                    uploadImageToStorage(imageUri);
+                }
+            } else if (data.getData() != null) {
+                // Single image selected
+                Uri imageUri = data.getData();
+                uploadImageToStorage(imageUri);
+            }
         }
+
     }
 
     private void uploadImageToStorage(Uri imageUri) {

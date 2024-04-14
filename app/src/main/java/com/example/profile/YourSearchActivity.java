@@ -144,7 +144,7 @@ public class YourSearchActivity extends Fragment {
     }
 
 
-//    private boolean postContainsQuery(postmodel post, String query) {
+//    private boolean postContainsQuery(postmodel post, String query) { 1.dark1.24, dark2.25, dark2vr.26,darksport.,dark sete,darks sp tr
 //        return post.getAbout().toLowerCase().contains(query.toLowerCase()) ||
 //                post.getPostdescription().toLowerCase().contains(query.toLowerCase()) ||
 //                post.getStandred().toLowerCase().contains(query.toLowerCase()) ||

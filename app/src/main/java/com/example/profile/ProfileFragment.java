@@ -303,14 +303,7 @@ database.getReference()
 
                 }
             });
-//            binding.coverpic.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    openLink("https://chat.openai.com/c/3680c290-d6b1-484f-b60b-2b6849721cb8");
-//                }
-//
-//
-//            });
+
             binding.linked.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

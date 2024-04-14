@@ -66,7 +66,6 @@ public class ClasFragment extends Fragment {
                     }
                     adapter.notifyDataSetChanged();
                 } else {
-                    // Data does not exist, show a Toast message
                     list.clear();
                     adapter.notifyDataSetChanged();
                     Toast.makeText(getActivity(), "You were not enrolled in any course" , Toast.LENGTH_SHORT).show();                }
@@ -77,22 +76,7 @@ public class ClasFragment extends Fragment {
                 // Handle errors if any
             }
         });
-//            database.getReference().child("AAclass").child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                                clasmodel clasmodel = dataSnapshot.getValue(clasmodel.class);
-//                                clasmodel.setClasid(dataSnapshot.getKey());
-//                                list.add(clasmodel);
-//                            }
-//                            adapter.notifyDataSetChanged();
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                        }
-//                    });
+
             return binding.getRoot();
         }
 
