@@ -13,9 +13,9 @@ android {
     defaultConfig {
         applicationId "com.blank_learn.dark"
         minSdk 22
-        targetSdk 32
-        versionCode  16
-        versionName "9.6.1"
+        targetSdk 33
+        versionCode  18
+        versionName "10.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

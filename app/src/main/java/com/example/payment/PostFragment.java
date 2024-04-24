@@ -1,5 +1,6 @@
 package com.example.payment;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -168,7 +170,7 @@ FirebaseStorage storage;
         });
 
 
-        binding.imgP.setOnClickListener(new View.OnClickListener() {
+        binding.imgp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -189,6 +191,20 @@ FirebaseStorage storage;
         binding.postbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (uri == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Select image")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                }
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    return;
+                }
+
+
+
                 randomKey2= UUID.randomUUID().toString();
                 randomKey = database.getReference().push().getKey();
                 dialog.show();
@@ -279,33 +295,33 @@ FirebaseStorage storage;
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==22) {
-            if (data.getData() != null) {
-                Uri uri = data.getData();
-                final StorageReference reference = storage.getReference().child("uploadvideo").child(FirebaseAuth.getInstance().getUid());
-                reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            if (requestCode == 22) {
+                if (data.getData() != null) {
+                    Uri uri = data.getData();
+                    final StorageReference reference = storage.getReference().child("uploadvideo").child(FirebaseAuth.getInstance().getUid());
+                    reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                database.getReference().child("Postvideo").push().child(FirebaseAuth.getInstance().getUid())
-                                        .child("postvideo").push()
-                                        .setValue(uri.toString());
-                            }
-                        });
-                    }
-                })
-                ;
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    database.getReference().child("Postvideo").push().child(FirebaseAuth.getInstance().getUid())
+                                            .child("postvideo").push()
+                                            .setValue(uri.toString());
+                                }
+                            });
+                        }
+                    })
+                    ;
+                }
             }
-        }
 
 
         else {
-            if
-            (data.getData() != null) {
+            if (data.getData() != null) {
                 uri = data.getData();
+
 
                 binding.postbtn.setBackgroundColor(getContext().getResources().getColor(R.color.white));
                   binding.postbtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.postbg));

@@ -26,15 +26,15 @@
             <ImageView
                 android:id="@+id/poster"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
                 android:minHeight="0dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postnow"
-                app:srcCompat="@drawable/homelou"
+                app:srcCompat="@drawable/pixel"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:padding="10dp"
-                android:text="Most populor course"
+                android:text="Most popular course"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -139,7 +139,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/student_post" />
+                app:layout_constraintTop_toBottomOf="@+id/StoryRV" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/postnow"
@@ -263,9 +263,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/StoryRV"
                 tools:srcCompat="@drawable/homepag" />
+
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/signbg"
+                android:backgroundTint="#0A0D1C"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="How does it work  ➜"
+                android:textColor="#FF9800"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/poster"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/poster"
+                app:layout_constraintVertical_bias="0.943" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

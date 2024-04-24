@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blank_learn.dark.R;
 import com.example.home.HomFragment;
+import com.example.payment.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +30,13 @@ public class slideActivity extends AppCompatActivity {
 
     private String[] textArray ;
     private String[] textArray2 ;
-    Button button;
-
+    TextView button;
     private LinearLayout indicatorLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide);
-button= findViewById(R.id.textView66);
+        button= findViewById(R.id.textView66);
         sliderRecyclerView = findViewById(R.id.sliderRecyclerView);
         indicatorLayout = findViewById(R.id.indicatorContainer);
         button.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +51,13 @@ button= findViewById(R.id.textView66);
 
         animationList = new ArrayList<>();
         animationList = new ArrayList<>();
+        animationList.add(R.raw.anim12);
+        animationList.add(R.raw.anim11);
+        animationList.add(R.raw.anim10);
+        animationList.add(R.raw.anim9);
+        animationList.add(R.raw.anim8);
+        animationList.add(R.raw.anim7);
+        animationList.add(R.raw.anim6);
         animationList.add(R.raw.anim5);
         animationList.add(R.raw.anim4);
         animationList.add(R.raw.anim3);
@@ -58,14 +65,24 @@ button= findViewById(R.id.textView66);
         animationList.add(R.raw.anim2);
         animationList.add(R.raw.anim_f);
 
-        textArray2 = new String[]{"steIn your activity where you need to access storagep1",
-                "In your activity where you need to access storage",
-                "In your activity where you need to access storage",
-                "stIn your activity where you need to access storageep4",
-                "In your activity where you need to access storageIn your activity where you need to access storage"};
+        textArray2 = new String[]
+                {
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""};
 
 
-        textArray = new String[]{"Step1", "Step2", "Step3", "Step4", "Step5"};
+        textArray = new String[]{"", "", "", "", "","","","","","","","",""};
         sliderAdapter = new lettyadapter(this, animationList, textArray2,textArray);
         sliderRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         sliderRecyclerView.setAdapter(sliderAdapter);

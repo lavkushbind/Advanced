@@ -210,7 +210,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Create a 2 mint video "
+                android:text="Upload a short video "
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -242,12 +242,13 @@
                 android:layout_marginEnd="74dp"
                 android:layout_marginBottom="32dp"
 
-                android:background="@drawable/edit_text_background"
-                android:backgroundTint="#041367"
+                android:textSize="15dp"
+                app:backgroundTint="#042FF4"
+                android:background="@drawable/signbg"
+                android:backgroundTint="#2F4EEB"
                 android:elevation="4dp"
-                android:text="Upload"
+                android:text="UPLOAD"
                 android:textColor="@color/white"
-                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -256,10 +257,11 @@
             <ImageView
                 android:id="@+id/addimg"
                 android:layout_width="30dp"
-
+android:background="@color/white"
+                android:padding="5dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="10dp"
                 android:src="@drawable/filefolder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -557,7 +559,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView213" />
 
             <ImageView
-                android:id="@+id/imgP"
+                android:id="@+id/imgp"
+                android:background="@color/white"
+                android:padding="5dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="8dp"
@@ -616,7 +620,7 @@
                     android:layout_marginBottom="10dp"
                     android:text="Complete this form "
 
-                    android:textColor="@color/white"
+                    android:textColor="#FF9800"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 

@@ -103,15 +103,15 @@ public class HomFragment extends Fragment {
          binding.poster.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 Intent intent = new Intent(getActivity(), slideActivity.class);
+                 Intent intent = new Intent(getActivity(), student_slider.class);
                  startActivity(intent);
              }
          });
         binding.studentPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), student_slider.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), student_slider.class);
+//                startActivity(intent);
             }
         });
         database.getReference().child("posts").addValueEventListener(new ValueEventListener() {

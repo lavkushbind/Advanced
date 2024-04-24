@@ -1,48 +1,15 @@
 package com.example.loginandsignup;
 
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.os.Handler;
-//import android.view.WindowManager;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import com.blank_learn.dark.R;
-//import com.example.home.MainActivity;
-//
-//
-//public class FlashActivity extends AppCompatActivity {
-// @Override
-//protected void onCreate(Bundle savedInstanceState) {
-//     super.onCreate(savedInstanceState);
-//     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//             WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//
-//     setContentView(R.layout.activity_flash);
-//
-//     new Handler().postDelayed(new Runnable() {
-//         @Override
-//         public void run() {
-//             Intent i = new Intent(FlashActivity.this, login.class);
-////             Intent i = new Intent(FlashActivity.this, signup.class);
-//
-//             // on below line we are
-//             // starting a new activity.
-//             startActivity(i);
-//
-//             // on the below line we are finishing
-//             // our current activity.
-//             finish();
-//         }
-//     }, 500);
-//
-// }}
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.blank_learn.dark.R;
 import com.example.home.MainActivity;
@@ -57,10 +24,14 @@ public class FlashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_flash);
+        if (isConnected()) {
+            loadDataAndMoveToMain();
+        } else {
+            showNoInternetDialog();
+        }
 
         // Load data from Firebase and move to MainActivity
         loadDataAndMoveToMain();
@@ -88,5 +59,38 @@ public class FlashActivity extends AppCompatActivity {
                 // For example, show an error message or retry loading data
             }
         });
+    }
+
+    private boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+            return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        }
+        return false;
+    }
+
+    private void showNoInternetDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("No Internet Connection")
+                .setMessage("Please check your internet connection and try again.")
+                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (isConnected()) {
+                            loadDataAndMoveToMain();
+                        } else {
+                            showNoInternetDialog();
+                        }
+                    }
+                })
+                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
 }

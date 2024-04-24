@@ -129,7 +129,6 @@ public class YourSearchActivity extends Fragment {
         search_course_adapter.notifyDataSetChanged();
     }
     private boolean postContainsQuery(postmodel post, String query) {
-        // Check for null values before calling toLowerCase()
         return (post.getAbout() != null && post.getAbout().toLowerCase().contains(query.toLowerCase())) ||
                 (post.getPostdescription() != null && post.getPostdescription().toLowerCase().contains(query.toLowerCase())) ||
                 (post.getStandred() != null && post.getStandred().toLowerCase().contains(query.toLowerCase())) ||
@@ -144,19 +143,6 @@ public class YourSearchActivity extends Fragment {
     }
 
 
-//    private boolean postContainsQuery(postmodel post, String query) { 1.dark1.24, dark2.25, dark2vr.26,darksport.,dark sete,darks sp tr
-//        return post.getAbout().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getPostdescription().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getStandred().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getLanguage().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getPostedBy().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getTime().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getPrice().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getDuration().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getPhone().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getPosttype().toLowerCase().contains(query.toLowerCase()) ||
-//                post.getPaylink().toLowerCase().contains(query.toLowerCase()) ||
-//                false;
-//    }
+
 }
 

@@ -257,14 +257,14 @@ database.getReference()
                     alertDialog.show();
                 }
             });
-            binding.messageBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(getActivity(), login.class);
-                    startActivity(intent);
-                }
-            });
+//            binding.messageBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    FirebaseAuth.getInstance().signOut();
+//                    Intent intent = new Intent(getActivity(), login.class);
+//                    startActivity(intent);
+//                }
+//            });
 
 
             binding.editpro.setOnClickListener(new View.OnClickListener() {

@@ -58,7 +58,6 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
         topic = intent.getStringExtra("Topic");
         price= intent.getStringExtra("Price");
         postpic= intent.getStringExtra("postpic");
-//        Toast.makeText(this, "Image URL: " + postpic, Toast.LENGTH_SHORT).show();
 
         imageView = findViewById(R.id.imageView13);
         textView = findViewById(R.id.textView6);
@@ -72,54 +71,39 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
         if (postpic != null && !postpic.isEmpty()) {
             Picasso.get().load(postpic).into(imageView);
         }else {
-//            Toast.makeText(this, "nulllllllllll", Toast.LENGTH_SHORT).show();
         }
 
         textView.setText(topic);
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // on below line we are getting
-                // amount that is entered by user.
                 String samount = price.toString();
 
-                // rounding off the amount.
                 int amount = Math.round(Float.parseFloat(samount) * 100);
 
-                // initialize Razorpay account.
                 Checkout checkout = new Checkout();
 
-                // set your id as below
+
                 checkout.setKeyID("rzp_live_6vd9RApruseTAi");
 
-                // set image
                 checkout.setImage(R.drawable.lop);
 
-                // initialize json object
                 JSONObject object = new JSONObject();
                 try {
-                    // to put name
                     object.put("name", topic);
 
-                    // put description
                     object.put("description", "");
 
-                    // to set theme color
                     object.put("theme.color", "");
 
-                    // put the currency
                     object.put("currency", "INR");
 
-                    // put amount
                     object.put("amount", amount);
 
-                    // put mobile number
                     object.put("prefill.contact", "9284064503");
 
-                    // put email
                     object.put("prefill.email", "chaitanyamunje@gmail.com");
 
-                    // open razorpay to checkout activity
                     checkout.open(razorpayActivity.this, object);
                 } catch (JSONException e) {
                     e.printStackTrace();

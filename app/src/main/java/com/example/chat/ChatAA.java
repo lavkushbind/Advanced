@@ -251,6 +251,7 @@ public class ChatAA extends AppCompatActivity {
     }
 
     private void uploadImageToStorage(Uri imageUri) {
+
         StorageReference storageRef = storage.getReference().child("images");
         StorageReference imageRef = storageRef.child("image_" + System.currentTimeMillis());
         imageRef.putFile(imageUri)

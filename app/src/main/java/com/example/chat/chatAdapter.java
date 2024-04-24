@@ -92,24 +92,8 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         chatmodel chatmodel = list.get(position);{
-            if (holder instanceof SenderViewHolder) {
-                ((SenderViewHolder) holder).delete_img.setOnClickListener(v -> {
-                    PopupMenu popupMenu = new PopupMenu(context, ((SenderViewHolder) holder).delete_img);
-                    popupMenu.inflate(R.menu.menu_chat_item);
-                    popupMenu.setOnMenuItemClickListener(item -> {
-                        if (item.getItemId() == R.id.imageView21) {
-                            showDeleteDialog(chatmodel);
-
-                            return true;
-                        }
-                        return false;
-                    });
-                    popupMenu.show();
-                });
-            } else if (holder instanceof ReceiverViewHolder) {
-
-            }
-
+            if (holder instanceof SenderViewHolder)
+            {
                 ((SenderViewHolder) holder).senderMsg.setText(chatmodel.getMasseg());
                 linkifyText(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
                 setLongPressListener(((SenderViewHolder) holder).senderMsg, chatmodel.getMasseg());
@@ -120,7 +104,6 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ((SenderViewHolder) holder).imageView2.setVisibility(View.VISIBLE);
                     ((SenderViewHolder) holder).senderMsg.setVisibility(View.GONE);
                 }
-
                 else {
                     ((SenderViewHolder) holder).senderImage.setVisibility(View.GONE);
                     ((SenderViewHolder) holder).imageView2.setVisibility(View.GONE);
@@ -128,8 +111,6 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ((SenderViewHolder) holder).senderMsg.setVisibility(View.VISIBLE);
                 }
                 if (holder instanceof SenderViewHolder) {
-
-
 //                    ((SenderViewHolder)holder).imageView21s.setOnClickListener(new View.OnClickListener() {
 //                        @Override
 //                        public void onClick(View v) {
@@ -150,8 +131,9 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     }
                 });}
 
-            }
-             if (holder instanceof ReceiverViewHolder) {
+            }}
+             if (holder instanceof ReceiverViewHolder)
+             {
                 ((ReceiverViewHolder) holder).receiverMsg.setText(chatmodel.getMasseg());
                 linkifyText(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
                 setLongPressListener(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
@@ -200,46 +182,11 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
-    private void showDeleteDialog(chatmodel chatModel) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Delete Message")
-                .setMessage("Are you sure you want to delete this message?")
-                .setPositiveButton("Delete", (dialog, which) -> {
-                    // Call method to delete message from Firebase
-                    deleteMessageFromFirebase(chatModel);
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
-    }
 
 
 
 
 
-    private void deleteMessageFromFirebase(chatmodel chatModel) {
-        DatabaseReference messagesRef = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("Personal_chat")
-                .child(chatModel.getMuid())
-                .child("mess")
-                .child(chatModel.getMasseg());
-
-        messagesRef.removeValue()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        // Message deleted successfully
-                        Log.d("DeleteMessage", "Message deleted successfully");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Handle failure to delete message
-                        Log.e("DeleteMessage", "Failed to delete message: " + e.getMessage());
-                    }
-                });
-    }
 
 //        chatmodel chatModel = list.get(position);
 
@@ -388,10 +335,7 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //
 //    }
 
-    private void openFullDialogActivity() {
-        Intent intent = new Intent(context, DailogActivity.class);
-        context.startActivity(intent);
-    }
+
 
 
     private void downloadImage(String imageUrl) {
@@ -456,57 +400,10 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             Toast.makeText(context, "DownloadManager not available", Toast.LENGTH_SHORT).show();
         }
     }
-    private void openDownloadedFile(Context context, String filePath) {
-        Intent openFileIntent = new Intent(Intent.ACTION_VIEW);
-        File file = new File(filePath);
-
-        // Set the data and type for the intent
-        openFileIntent.setDataAndType(Uri.fromFile(file), getMimeType(file));
-
-        // Add flags to grant read permissions to the receiving app
-        openFileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-        // Add the FLAG_ACTIVITY_NEW_TASK flag
-        openFileIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        // Try to start the activity to open the file
-        try {
-            context.startActivity(openFileIntent);
-        } catch (ActivityNotFoundException e) {
-            // Handle the case where no suitable app is installed to open the file
-            Toast.makeText(context, "No app to open the file", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
-    private String getMimeType(File file) {
-        String extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(file).toString());
-        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-    }
 
 
-    private void showImageFullScreen(String imageUrl) {
-        Log.d("ShowFullScreen", "Context: " + context);
-        if (context instanceof Activity && !((Activity) context).isFinishing()) {
-            Log.d("ShowFullScreen", "Showing fullscreen image");
-            Dialog dialog = new Dialog(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-            dialog.setContentView(R.layout.dialog_fullscreen_image);
-
-            ImageView fullScreenImageView = dialog.findViewById(R.id.fullScreenImageView);
-            loadImageWithPicasso(imageUrl, fullScreenImageView, R.drawable.gallery);
-
-            // Set a click listener on the image to close the dialog when clicked
-            fullScreenImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
-
-            // Show the dialog
-            dialog.show();
-        }
-    }
 
     private void loadImageWithPicasso(String imageUrl, ImageView imageView, int gallery) {
         Picasso.get().load(imageUrl).into(imageView);

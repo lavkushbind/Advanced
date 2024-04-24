@@ -35,7 +35,6 @@ public class Chat_list_Activity extends AppCompatActivity {
         list = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
-//        chatId = createChatId();  // Assume you have a method to create the chatId
 
         MemberAdapter memberAdapter = new MemberAdapter(list, getApplicationContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
