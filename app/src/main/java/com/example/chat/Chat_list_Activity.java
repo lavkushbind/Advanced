@@ -69,7 +69,6 @@ public class Chat_list_Activity extends AppCompatActivity {
                             for (DataSnapshot chatSnapshot : snapshot.getChildren()) {
                                 String chatId = chatSnapshot.getKey();
 
-                                // Check if the currently authenticated user's ID is present in the chat ID
                                 if (chatId.contains(currentUserUid)) {
                                     String[] userIds = chatId.split("_");
                                     String memberId = (userIds[0].equals(currentUserUid)) ? userIds[1] : userIds[0];
@@ -85,12 +84,6 @@ public class Chat_list_Activity extends AppCompatActivity {
                                                         memberAdapter.notifyDataSetChanged();
                                                     }
 
-//                                                    else {
-//                                                        // Data does not exist, show a Toast message
-//                                                        list.clear();
-//                                                        memberAdapter.notifyDataSetChanged();
-//                                                        Toast.makeText(Chat_list_Activity.this, "No chat available", Toast.LENGTH_SHORT).show();
-//                                                    }
                                                 }
 
                                                 @Override

@@ -116,6 +116,21 @@ public class EditFragment extends Fragment {
                         });
             }
         });
+        binding.updatef.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                long update = Long.parseLong(binding.facebookurl.getText().toString());
+                binding.facebookurl.setText("");
+                database.getReference().child("Users")
+                        .child(auth.getUid()).child("charge").
+                        setValue(update).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                            }
+                        });
+            }
+        });
+
 
         binding.Updateemail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,20 +162,20 @@ public class EditFragment extends Fragment {
                     }
                 });
 
-        binding.updatef.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String update = binding.facebookurl.getText().toString();
-                binding.facebookurl.setText("");
-                database.getReference().child("Users")
-                        .child(auth.getUid()).child("fb").
-                        setValue(update).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                            }
-                        });
-            }
-        });
+//        binding.updatef.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String update = binding.facebookurl.getText().toString();
+//                binding.facebookurl.setText("");
+//                database.getReference().child("Users")
+//                        .child(auth.getUid()).child("fb").
+//                        setValue(update).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void unused) {
+//                            }
+//                        });
+//            }
+//        });
 
 
         binding.updateL.setOnClickListener(new View.OnClickListener() {

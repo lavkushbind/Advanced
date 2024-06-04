@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
-        android:text="Brawas all"
+        android:text="Browse all"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
         android:textStyle="bold"

@@ -60,6 +60,11 @@ public class Search_course_adapter extends RecyclerView.Adapter<Search_course_ad
 
                             if (user != null)     {
                                 holder.binding.nameID.setText(user.getName());
+                                if (user.isVerify()) {
+                                    holder.binding.imageView27.setVisibility(View.VISIBLE);
+                                } else {
+                                    holder.binding.imageView27.setVisibility(View.GONE);
+                                }
                             }else {
 
                             }

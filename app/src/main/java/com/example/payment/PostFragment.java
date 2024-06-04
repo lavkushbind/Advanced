@@ -34,13 +34,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.util.Date;
 import java.util.UUID;
-
 public class PostFragment extends Fragment{
 FragmentPostBinding binding;
 Uri uri;
 String randomKey;
 String randomKey2;
-
 FirebaseAuth auth;
 FirebaseDatabase database;
 ProgressDialog dialog;
@@ -223,7 +221,7 @@ FirebaseStorage storage;
                                         postmodel.setPhone(binding.phone.getText().toString());
                                         postmodel.setAbout(binding.aboutP.getText().toString());
                                         postmodel.setPostedBy(FirebaseAuth.getInstance().getUid());
-                                        postmodel.setPrice(binding.price.getText().toString());
+//                                        postmodel.setPrice(Long.parseLong(binding.price.getText().toString()));
                                         postmodel.setTime(binding.timeP.getText().toString());
                                         postmodel.setLanguage(binding.languageP.getText().toString());
                                         postmodel.setDuration(binding.duration.getText().toString());

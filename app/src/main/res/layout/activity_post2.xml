@@ -7,15 +7,28 @@
     android:background="#0A0D1C"
     android:backgroundTint="#0A0D1C">
 
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="#0A0D1C"
+        android:backgroundTint="#0A0D1C"
+        android:foregroundGravity="center|fill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.exoplayer2.ui.PlayerView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,12 +36,22 @@
             android:background="#0A0D1C"
             android:backgroundTint="#0A0D1C">
 
+            <ImageView
+                android:id="@+id/imageView24"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/usernm"
+                app:layout_constraintStart_toEndOf="@+id/usernm"
+                app:layout_constraintTop_toTopOf="@+id/usernm"
+                app:srcCompat="@drawable/verify" />
+
             <TextView
                 android:id="@+id/usernm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/edit_text_background"
                 android:fontFamily="@font/abril_fatface"
                 android:padding="10dp"
@@ -45,24 +68,13 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/linkedin"
                 android:padding="2sp"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="1sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/videoView" />
-
-            <com.google.android.exoplayer2.ui.PlayerView
-                android:id="@+id/videoView"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:background="#0A0D1C"
-                android:backgroundTint="#0A0D1C"
-                android:foregroundGravity="center|fill"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/NameID"
@@ -84,8 +96,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profilepic" />
 
+
             <TextView
-                android:id="@+id/DurationID"
+                android:id="@+id/textview73"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -96,8 +109,24 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/textView70"
                 app:layout_constraintTop_toBottomOf="@+id/NameID" />
+
+            <TextView
+                android:id="@+id/DurationID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_text_background"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/textview73" />
 
             <TextView
                 android:id="@+id/textView15"
@@ -122,12 +151,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
                 android:layout_marginBottom="32dp"
-                android:textColor="@color/white"
-                android:textSize="15dp"
-                app:backgroundTint="#042FF4"
                 android:background="@drawable/signbg"
                 android:backgroundTint="#031681"
                 android:text=" NEXT"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:backgroundTint="#042FF4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -210,19 +239,36 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/edit_text_background"
                 android:padding="10dp"
-                android:text=" android:background="
+                android:text="2000"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/AboutID" />
 
+
+            <TextView
+                android:id="@+id/textView70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
+                android:padding="10dp"
+                android:text="Total Seats"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/NameID" />
+
+
             <TextView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
                 android:padding="10dp"
                 android:text="Duration"
@@ -230,7 +276,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NameID" />
+                app:layout_constraintTop_toBottomOf="@+id/textView70" />
 
             <TextView
                 android:id="@+id/twitter"
@@ -240,7 +286,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
                 android:padding="10dp"
-                android:text="language"
+                android:text="Medium"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -261,6 +307,38 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/twitter" />
+
+            <TextView
+                android:id="@+id/textView68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="29dp"
+                android:text="2000"
+                android:textColor="#FF5722"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/paybtn"
+                app:layout_constraintStart_toEndOf="@+id/textView74" />
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#CBC5C5"
+                app:layout_constraintBottom_toBottomOf="@+id/textView68"
+                app:layout_constraintEnd_toEndOf="@+id/textView68"
+                app:layout_constraintStart_toStartOf="@+id/textView74" />
+
+            <TextView
+                android:id="@+id/textView74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="₹"
+                android:textColor="#FF5722"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/PriceID"
+                app:layout_constraintTop_toTopOf="@+id/textView68" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

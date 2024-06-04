@@ -1,11 +1,15 @@
 package com.example.home;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blank_learn.dark.R;
@@ -22,6 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 public class profile_homeadapter extends RecyclerView.Adapter<profile_homeadapter.viewHolder>  {
     ArrayList<postmodel> list_p;
@@ -45,7 +52,7 @@ public class profile_homeadapter extends RecyclerView.Adapter<profile_homeadapte
                     //   .placeholder(R.drawable.profileuser)
                     .into(holder.binding.exoplayerimage);
             //  holder.binding.nameID.setText(postmodel.getPostedBy());
-            holder.binding.priceID.setText(postmodel.getPrice());
+            holder.binding.priceID.setText(String.valueOf(postmodel.getPrice()));
             holder.binding.vtitle.setText(postmodel.getPostdescription());
             FirebaseDatabase.getInstance().getReference().child("Users").child(postmodel.getPostedBy()).addValueEventListener(new ValueEventListener() {
                 @Override

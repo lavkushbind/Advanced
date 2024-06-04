@@ -79,6 +79,16 @@ Context context;
                 context.startActivity(intent);
             }
         });
+//        holder.binding.posttitle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent= new Intent(context, videocall_Activity.class);
+//                intent.putExtra("idd",clasmodel.getLink());
+//                intent.putExtra("name",clasmodel.getType());
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(intent);
+//            }
+//        });
         holder.binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

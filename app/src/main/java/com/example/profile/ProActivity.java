@@ -140,6 +140,11 @@ public class ProActivity extends AppCompatActivity {
                             binding.Username.setText(user.getName());
                             binding.profesiontext.setText(user.getProfesion());
                             binding.followid.setText(user.getFollowercount()+"");
+                            if (user.isVerify()) {
+                                binding.verify.setVisibility(View.VISIBLE);
+                            } else {
+                                binding.verify.setVisibility(View.GONE);
+                            }
                         }
                     }
                     @Override

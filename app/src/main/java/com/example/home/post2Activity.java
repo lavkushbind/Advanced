@@ -66,6 +66,8 @@ public class post2Activity extends AppCompatActivity {
    String postid;
    String price;
    String stand;
+    String price2;
+    String seats;
    String name;
    String uri;
 
@@ -82,6 +84,9 @@ public class post2Activity extends AppCompatActivity {
         stand= intent.getStringExtra("stand");
         price= intent.getStringExtra("price");
         postid = intent.getStringExtra("postid");
+
+        seats= intent.getStringExtra("seats");
+        price2 = intent.getStringExtra("price2");
         name = intent.getStringExtra("postedBy");
         uri = intent.getStringExtra("video");
         topic = intent.getStringExtra("title");
@@ -184,10 +189,14 @@ public class post2Activity extends AppCompatActivity {
                                 postmodel postmodel = snapshot.getValue(postmodel.class);
                                 if (postmodel != null) {
                                     binding.NameID.setText(postmodel.getPostdescription());
+                                    binding.PriceID.setText(postmodel.getPrice());
+                                    binding.textView68.setText(String.valueOf(postmodel.getPrice2()));
+                                    binding.textview73.setText(String.valueOf(postmodel.getSeats()));
+
+
                                     binding.AboutID.setText(postmodel.getAbout());
                                     binding.DurationID.setText(postmodel.getDuration());
                                     binding.LanguageID.setText(postmodel.getLanguage());
-                                    binding.PriceID.setText(postmodel.getPrice());
                                     binding.TimeID.setText(postmodel.getTime());
                                 } else {
                                     Log.e("post2Activity", "postmodel is null");

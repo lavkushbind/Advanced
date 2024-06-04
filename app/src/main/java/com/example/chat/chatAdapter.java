@@ -111,12 +111,7 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ((SenderViewHolder) holder).senderMsg.setVisibility(View.VISIBLE);
                 }
                 if (holder instanceof SenderViewHolder) {
-//                    ((SenderViewHolder)holder).imageView21s.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//
-//                        }
-//                    });
+
 
 
                 ((SenderViewHolder) holder).senderImage.setOnLongClickListener(new View.OnLongClickListener() {
@@ -138,9 +133,7 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 linkifyText(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
                 setLongPressListener(((ReceiverViewHolder) holder).receiverMsg, chatmodel.getMasseg());
 
-                // Check if it's an image message
                 if (chatmodel.isImageUrl()) {
-                    // Load and display the image using Picasso
                     loadImageWithPicasso(chatmodel.getMasseg(), ((ReceiverViewHolder) holder).receivedImage, R.drawable.gallery);
                     ((ReceiverViewHolder) holder).receivedImage.setVisibility(View.VISIBLE);
                     ((ReceiverViewHolder) holder).imageView20.setVisibility(View.VISIBLE);
@@ -153,20 +146,17 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     ((ReceiverViewHolder) holder).receiverMsg.setVisibility(View.VISIBLE);
                 }
 
-// Inside your adapter's onBindViewHolder method
-                ((ReceiverViewHolder)holder).imageView21r.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        showDeleteConfirmationDialog(chatmodel.getMasseg());
-                    }
-                });
+//                ((ReceiverViewHolder)holder).imageView21r.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+////                        showDeleteConfirmationDialog(chatmodel.getMasseg());
+//                    }
+//                });
 
 
                 ((ReceiverViewHolder) holder).receivedImage.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-//                        showOptionsDialog(chatmodel.getMasseg());
-
                         if (chatmodel.isImageUrl()) {
                             downloadImage(chatmodel.getMasseg());
                             Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
@@ -511,7 +501,7 @@ public class chatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imageView21r= itemView.findViewById(R.id.imageView21);
 
 
-            receivedImage = itemView.findViewById(R.id.image); // Initialize the ImageView
+            receivedImage = itemView.findViewById(R.id.image);
 
         }
     }

@@ -1,5 +1,8 @@
 package com.example.home;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -8,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -42,19 +47,24 @@ public class HomFragment extends Fragment {
     FirebaseStorage storage;
     FirebaseDatabase database;
     ArrayList<postmodel> list;
-     ArrayList<postmodel> allPosts;
+    ArrayList<Users> listT;
+
+    ArrayList<postmodel> allPosts;
      ArrayList<appmodel> app_list;
     ArrayList<Story_model> story_list;
+    Context context;
 
     ArrayList<Teacher_model> Teacher_list;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        context= getContext();
         auth = FirebaseAuth.getInstance();
         storage=FirebaseStorage.getInstance();
         database=FirebaseDatabase.getInstance();
         list= new ArrayList<>();
+        listT= new ArrayList<>();
         story_list= new ArrayList<>();
         app_list= new ArrayList<>();
         Teacher_list= new ArrayList<>();
@@ -100,6 +110,24 @@ public class HomFragment extends Fragment {
         binding.postRV.setAdapter(homeadapter3);
        binding.postRV.scrollToPosition(homeadapter3.getItemCount() - 1);
          layoutManager2.setStackFromEnd(true);
+         binding.imageView22.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 String phoneNumber = "9235044520";
+                 String message = "how does Blanklearn work:";
+
+                 String url = "https://wa.me/" + phoneNumber + "?text=" + message;
+
+                 Intent intent = new Intent(Intent.ACTION_VIEW);
+                 intent.setData(Uri.parse(url));
+
+                 try {
+                     context.startActivity(intent);
+                 } catch (ActivityNotFoundException e) {
+                     Toast.makeText(context, "WhatsApp not installed", Toast.LENGTH_SHORT).show();
+                 }
+             }
+         });
          binding.poster.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -125,7 +153,6 @@ public class HomFragment extends Fragment {
                         list.add(postmodel);
                     }
 
-//                    list.add(postmodel);
                 }
                 homeadapter3.notifyDataSetChanged();
 
@@ -144,25 +171,25 @@ public class HomFragment extends Fragment {
         binding.TopTeacherRv.scrollToPosition(homeadapter2.getItemCount() - 1);
         layoutManager4.setStackFromEnd(true);
 
-        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    postmodel postmodel = dataSnapshot.getValue(postmodel.class);
-                    postmodel.setPostid(dataSnapshot.getKey());
-                    list.add(postmodel);
-                }
-                Collections.shuffle(list);
-
-                homeadapter2.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                list.clear();
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    postmodel postmodel = dataSnapshot.getValue(postmodel.class);
+//                    postmodel.setPostid(dataSnapshot.getKey());
+//                    list.add(postmodel);
+//                }
+//                Collections.shuffle(list);
+//
+//                homeadapter2.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         database.getReference().child("App").child("top courses").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -203,7 +230,6 @@ public class HomFragment extends Fragment {
                     binding.textView25.setText(user.getName());
                     Picasso.get().load(user.getProfilepic())
                             .into(binding.profilepic2);
-//                    binding.profilepic2.setVisibility(View.VISIBLE);
 
                 }
                 else {
@@ -225,6 +251,35 @@ public class HomFragment extends Fragment {
 
             }
         });
+
+        useradapter useradapter= new useradapter(listT,getContext());
+        LinearLayoutManager linearLayoutManagerT = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,true);
+        binding.recyclerView2.setLayoutManager(linearLayoutManagerT);
+        binding.recyclerView2.setAdapter(useradapter);
+        binding.postnow.scrollToPosition(useradapter.getItemCount() - 1);
+        linearLayoutManagerT.setStackFromEnd(true);
+        database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    if (dataSnapshot.child("charge").getValue() == null) {
+                        continue;
+                    }
+                    Users users = dataSnapshot.getValue(Users.class);
+                    users.setUserID(dataSnapshot.getKey());
+                    listT.add(users);
+                }
+                Collections.shuffle(list);
+
+              useradapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
 
 
         Search_course_adapter homeadapter = new Search_course_adapter(list, getContext());

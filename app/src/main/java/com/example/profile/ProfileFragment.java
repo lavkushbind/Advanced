@@ -226,6 +226,12 @@ database.getReference()
                                 } else {
                                     binding.instagram.setVisibility(View.GONE);
                                 }
+
+                                if (user.isVerify()) {
+                                    binding.imageView23.setVisibility(View.VISIBLE);
+                                } else {
+                                    binding.imageView23.setVisibility(View.GONE);
+                                }
                                tweeterUrl=(user.getTwitter());
                                 binding.profesiontext.setText(user.getProfesion());
                                 binding.emailtext.setText(user.getEmail());

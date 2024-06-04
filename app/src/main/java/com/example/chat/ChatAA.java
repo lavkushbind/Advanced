@@ -142,9 +142,7 @@ public class ChatAA extends AppCompatActivity {
             chatId = userid2 + "_" + userid1;
         }
 
-
-
-        database.getReference().child("Personal_chat").child(chatId)
+ database.getReference().child("Personal_chat").child(chatId)
                 .child("mess")
                 .addValueEventListener(new ValueEventListener() {
                     @Override

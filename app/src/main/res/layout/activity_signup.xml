@@ -64,6 +64,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:inputType="number"
             android:background="@drawable/edit_text_background"
             android:hint="Enter your phone number"
             android:paddingLeft="20sp"

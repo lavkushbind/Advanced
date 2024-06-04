@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="wrap_content"
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="1dp"
+    app:cardBackgroundColor="#080A18"
+    app:cardElevation="11dp"
+    android:outlineAmbientShadowColor="@color/white"
+    android:outlineSpotShadowColor="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="#0A0D1C"
         android:backgroundTint="#0A0D1C">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profilepic"
-            android:layout_width="70sp"
-            android:layout_height="70sp"
-            android:layout_marginStart="24dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="16dp"
             android:padding="1sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/profileuser"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:text=" whatsapp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="kunal"
             android:textColor="#F9F7F7"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/profilepic"
-            app:layout_constraintHorizontal_bias="0.16"
             app:layout_constraintStart_toStartOf="@+id/profilepic"
             app:layout_constraintTop_toBottomOf="@+id/profilepic" />
 
@@ -55,5 +55,90 @@
             app:layout_constraintEnd_toEndOf="@+id/tname"
             app:layout_constraintStart_toStartOf="@+id/tname"
             app:layout_constraintTop_toBottomOf="@+id/tname" />
+
+        <TextView
+            android:id="@+id/textView76"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/tname"
+            app:layout_constraintStart_toStartOf="@+id/tname"
+            app:layout_constraintTop_toBottomOf="@+id/tname" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/textView75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#080A18"
+
+            app:layout_constraintEnd_toEndOf="@+id/textView76"
+            app:layout_constraintStart_toStartOf="@+id/textView76"
+            app:layout_constraintTop_toBottomOf="@id/textView76" >
+          <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹"
+                android:textColor="#FF9800"/>
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000"
+                android:textColor="#FF9800"/>
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/ h"
+            android:textColor="#FF9800"/>
+          </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textView77"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/post_background"
+            android:backgroundTint="#FF9800"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="Book a free demo class"
+            android:textColor="#F8F5F5"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView75" />
+
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@+id/tname"
+            app:layout_constraintTop_toBottomOf="@+id/profilepic"
+            app:srcCompat="@drawable/verify" />
+
+        <ImageView
+            android:id="@+id/imageView28"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/share" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.cardview.widget.CardView>

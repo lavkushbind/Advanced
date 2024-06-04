@@ -14,8 +14,8 @@ android {
         applicationId "com.blank_learn.dark"
         minSdk 22
         targetSdk 33
-        versionCode  18
-        versionName "10.0.0"
+        versionCode  104
+        versionName "10.0.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,7 +36,10 @@ android {
 dependencies {
 //    implementation 'com.github.rey5137:Letty:2.0.3'
     implementation 'com.airbnb.android:lottie:4.2.2'
+//    implementation 'io.agora.rtc:full-sdk:4.2.6'
+//    implementation 'io.agora.rtc:rtc-sdk:4.2.6'
 
+//    implementation 'com.github.AgoraIO-Community:Basic-Video-Call:1.13.0'
 
 
 
@@ -70,4 +73,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'androidx.activity:activity:1.6.0'
     implementation 'androidx.core:core-ktx:1.6.0'
+
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
 }

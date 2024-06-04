@@ -33,6 +33,25 @@ public class postmodel {
     private String Standred;
     private String phone;
     private  String price;
+private long price2;
+private long seats;
+
+    public long getPrice2() {
+        return price2;
+    }
+
+    public void setPrice2(long price2) {
+        this.price2 = price2;
+    }
+
+    public long getSeats() {
+        return seats;
+    }
+
+    public void setSeats(long seats) {
+        this.seats = seats;
+    }
+
     private String duration;
     public String getPhone() {
         return phone;

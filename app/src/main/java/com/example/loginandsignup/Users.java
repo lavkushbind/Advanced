@@ -1,5 +1,6 @@
 package com.example.loginandsignup;
 public class Users {
+    private long charge;
     private String name;
     private String email;
     private String userID;
@@ -15,6 +16,23 @@ public class Users {
     private String save;
     private String buy;
     private String phone;
+    private  boolean verify;
+
+    public boolean isVerify() {
+        return verify;
+    }
+
+    public void setVerify(boolean verify) {
+        this.verify = verify;
+    }
+
+    public long getCharge() {
+        return charge;
+    }
+
+    public void setCharge(long charge) {
+        this.charge = charge;
+    }
 
     public String getPhone() {
         return phone;

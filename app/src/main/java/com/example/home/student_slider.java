@@ -58,9 +58,9 @@ public class student_slider extends AppCompatActivity {
         animationList.add(R.raw.anim_f);
         animationList.add(R.raw.anim6);
         textArray= new String[]{
-                "1. Choosing Your Course:",
-                "2. Seeing Course Details:",
-                "3. Enrolling in a Course:",
+                " Step-1. Choosing Your Course:",
+                "Step-2. Seeing Course Details:",
+                "Step-3. Enrolling in a Course:",
                 "4. You'll be added to the group automatically:",
                 "5. Accessing Class Links and Asking Doubts:",
                 "6. Personalized Guidance with teacher:",

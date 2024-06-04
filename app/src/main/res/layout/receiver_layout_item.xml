@@ -49,8 +49,7 @@
             android:scaleType="centerCrop"
             android:background="@drawable/folder"
 
-            android:clickable="true"
-            android:onClick="onTmageClick"
+
 
             android:src="@drawable/homepag"
             android:visibility="gone" />

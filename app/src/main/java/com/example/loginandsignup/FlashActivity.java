@@ -32,8 +32,6 @@ public class FlashActivity extends AppCompatActivity {
         } else {
             showNoInternetDialog();
         }
-
-        // Load data from Firebase and move to MainActivity
         loadDataAndMoveToMain();
     }
 
@@ -50,7 +48,7 @@ public class FlashActivity extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }
-                }, 500); // Delay time in milliseconds
+                }, 500);
             }
 
             @Override

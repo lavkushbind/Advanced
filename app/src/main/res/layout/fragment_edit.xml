@@ -108,7 +108,6 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="esgfdgfhgj"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/Updatename"
@@ -159,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
-                android:text="Emailid"
+                android:text="Email Id"
                 android:textColor="@color/white"
                 android:textSize="14dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -225,9 +224,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
-                android:text="facebook Link"
+                android:text="Per hour charge for 1-1 class"
                 android:textColor="@color/white"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/facebookurl" />
 
@@ -267,7 +266,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/textView43"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -292,11 +291,12 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
-                android:gravity="top"
+                android:gravity="center_vertical"
                 android:inputType="textMultiLine"
+                android:paddingLeft="10dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toStartOf="@+id/updatef"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linkdinurl" />
@@ -382,9 +382,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="Update Your Profile"
+                android:textColor="@color/white"
                 android:textSize="25dp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

@@ -66,11 +66,15 @@ public class YourSearchActivity extends Fragment {
                 allPosts.clear();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     postmodel post = postSnapshot.getValue(postmodel.class);
-                    if (post != null) {
+                    if (post.getPostVideo() != null) {
+
+
+                        if (post != null) {
                         post.setPostid(postSnapshot.getKey());
                         allPosts.add(post);
+
                     }
-                }
+                }}
                 filterAndDisplayPosts("");
             }
 
@@ -135,7 +139,7 @@ public class YourSearchActivity extends Fragment {
                 (post.getLanguage() != null && post.getLanguage().toLowerCase().contains(query.toLowerCase())) ||
                 (post.getPostedBy() != null && post.getPostedBy().toLowerCase().contains(query.toLowerCase())) ||
                 (post.getTime() != null && post.getTime().toLowerCase().contains(query.toLowerCase())) ||
-                (post.getPrice() != null && post.getPrice().toLowerCase().contains(query.toLowerCase())) ||
+//                (post.getPrice() != null && post.getPrice().toLowerCase().contains(query.toLowerCase())) ||
                 (post.getDuration() != null && post.getDuration().toLowerCase().contains(query.toLowerCase())) ||
                 (post.getPhone() != null && post.getPhone().toLowerCase().contains(query.toLowerCase())) ||
                 (post.getPosttype() != null && post.getPosttype().toLowerCase().contains(query.toLowerCase())) ||
