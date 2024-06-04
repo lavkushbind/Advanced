@@ -89,7 +89,7 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
         imageView = findViewById(R.id.imageView13);
         textView = findViewById(R.id.textView6);
         amountEdt = findViewById(R.id.idEdtAmount);
-        amountEdt.setText(price);
+        amountEdt.setText(price) ;
 
         auth = FirebaseAuth.getInstance();
         storage=FirebaseStorage.getInstance();
