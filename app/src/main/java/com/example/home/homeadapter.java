@@ -32,8 +32,10 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class homeadapter extends RecyclerView.Adapter<homeadapter.viewHolder>  {
     ArrayList<postmodel> list;
@@ -63,12 +65,19 @@ public class homeadapter extends RecyclerView.Adapter<homeadapter.viewHolder>  {
                     .load(postmodel.getPostImage())
                     .into(holder.binding.exoplayerimage);
             holder.binding.Seats.setText(String.valueOf(postmodel.getSeats()));
-            holder.binding.price2.setText(String.valueOf(postmodel.getPrice2()));
-            holder.binding.textView58.setText(postmodel.getPrice());
+
+//            holder.binding.price2.setText(String.valueOf(postmodel.getPrice2()));
+//            holder.binding.priceFirst.setText(postmodel.getPrice());
+
+            holder.binding.price2.setText(formatPriceAccordingToLocale(postmodel.getPrice2()));
+            holder.binding.priceFirst.setText(formatPriceAccordingToLocale(Double.parseDouble(postmodel.getPrice())));
+
+
 
             holder.binding.textView57.setText(postmodel.getAbout());
             holder.binding.vtitle.setText(postmodel.getPostdescription());
-                                                                                                                                                           holder.binding.vtitle.setText(postmodel.getPostdescription());
+
+            holder.binding.vtitle.setText(postmodel.getPostdescription());
 
             FirebaseDatabase.getInstance()
                     .getReference().child("Users")
@@ -197,6 +206,12 @@ public class homeadapter extends RecyclerView.Adapter<homeadapter.viewHolder>  {
             super(itemView);
             binding = VideoBinding.bind(itemView);
         }
+    }
+
+    private String formatPriceAccordingToLocale(double price) {
+        Locale indianLocale = new Locale("en", "IN");
+        NumberFormat format = NumberFormat.getCurrencyInstance(indianLocale);
+        return format.format(price);
     }
     }
 

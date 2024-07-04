@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blank_learn.dark.R;
 import com.blank_learn.dark.databinding.TopteaBinding;
+import com.example.dark.oneclassActivity;
 import com.example.profile.ProActivity;
 import com.squareup.picasso.Picasso;
 
@@ -36,16 +37,30 @@ public class Top_teacher_adapter extends RecyclerView.Adapter<Top_teacher_adapte
 //                .placeholder(R.drawable.profileuser)
                 .into(holder.binding.profilepic);
         holder.binding.tname.setText(teacher_model.getName());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userId = teacher_model.getId();
-                Intent intent=  new Intent(context, ProActivity.class);
-                intent.putExtra("USER_ID", userId);
+                Intent intent=  new Intent(context, oneclassActivity.class);
+                intent.putExtra("Link",teacher_model.getStoryid());
+                intent.putExtra("userId",teacher_model.getId());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+
             }
         });
+
+
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String userId = teacher_model.getId();
+//                Intent intent=  new Intent(context, ProActivity.class);
+//                intent.putExtra("USER_ID", userId);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(intent);
+//            }
+//        });
     }
     @Override
     public int getItemCount() {

@@ -1,7 +1,4 @@
 package com.example.profile;
-import static android.app.Activity.RESULT_OK;
-import static android.content.ContentValues.TAG;
-import static com.google.android.material.color.utilities.MaterialDynamicColors.error;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -12,18 +9,12 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
@@ -33,17 +24,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.blank_learn.dark.R;
 import com.blank_learn.dark.databinding.FragmentProfileBinding;
 import com.example.home.Story_model;
-import com.example.home.profile_homeadapter;
 import com.example.payment.PostFragment;
-import com.example.home.homeadapter;
 import com.example.payment.postmodel;
 import com.example.loginandsignup.Users;
 import com.example.loginandsignup.login;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -61,7 +46,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
@@ -187,7 +171,13 @@ binding.profilepic.setOnClickListener(new View.OnClickListener() {
 });
 
 
-
+binding.uploadvid.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), uploadvideo.class);
+        startActivity(intent);
+    }
+});
 
 binding.uploadbtn.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -399,49 +389,6 @@ database.getReference()
                     });
                 }
             }
-//            if (requestCode == 52) {
-//                if (data.getData() != null) {
-//                    Uri uri = data.getData();
-//
-//                    final StorageReference storageReference = storage.getReference().child("Story_videos").child(FirebaseAuth.getInstance().getUid());
-//
-//                    // Create a ProgressDialog
-//                    ProgressDialog progressDialog = new ProgressDialog(getActivity());
-//                    progressDialog.setMessage("Uploading...");
-//                    progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-//                    progressDialog.setCancelable(false);
-//                    progressDialog.show();
-//
-//                    storageReference.putFile(uri)
-//                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                                @Override
-//                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                                    storageReference.getDownloadUrl()
-//                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                                @Override
-//                                                public void onSuccess(Uri downloadUri) {
-//                                                    // Save download URL to the Realtime Database
-//                                                    String uid = FirebaseAuth.getInstance().getUid();
-//                                                    DatabaseReference databaseReference = database.getReference().child("Story").push().child(uid).child("postvideo");
-//                                                    String key = databaseReference.push().getKey();
-//                                                    databaseReference.child(key).setValue(downloadUri.toString());
-//
-//                                                    // Dismiss the ProgressDialog on success
-//                                                    progressDialog.dismiss();
-//                                                }
-//                                            });
-//                                }
-//                            })
-//                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                                @Override
-//                                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                                    // Update the ProgressDialog with the upload progress
-//                                    float percent = (100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-//                                    progressDialog.setProgress((int) percent);
-//                                }
-//                            });
-//                }
-//            }
          else if (requestCode == 52) {
                 if (data.getData() != null) {
                     Uri uri = data.getData();

@@ -7,12 +7,11 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -23,10 +22,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
     <uses-permission android:name="android.permission.CAPTURE_SECURE_VIDEO_OUTPUT" />
-
-
-
-
 
     <application
         android:allowBackup="true"
@@ -39,13 +34,18 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:replace="android:label"
         tools:targetApi="31">
-
         <activity
-            android:name="com.example.chat.videocall_Activity"
-            android:exported="true" >
-
-        </activity>
-
+            android:name="com.example.profile.Teacher_Activity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.payment.class_Activity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.profile.uploadvideo"
+            android:exported="false" />
+        <activity
+            android:name="com.example.dark.oneclassActivity"
+            android:exported="false" />
         <activity
             android:name="com.example.home.student_slider"
             android:exported="false"
@@ -56,12 +56,12 @@
             android:exported="true"
             android:screenOrientation="portrait">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
             <meta-data
                 android:name="android.app.lib_name"

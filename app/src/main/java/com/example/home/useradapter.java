@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.blank_learn.dark.R;
 import com.blank_learn.dark.databinding.TopteaBinding;
 import com.example.chat.ChatAA;
+import com.example.dark.oneclassActivity;
 import com.example.loginandsignup.Users;
 import com.example.profile.ProActivity;
 import com.squareup.picasso.Picasso;
@@ -26,7 +27,9 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class useradapter extends RecyclerView.Adapter<useradapter.viewholder> {
     ArrayList<Users> list;
@@ -51,7 +54,7 @@ public class useradapter extends RecyclerView.Adapter<useradapter.viewholder> {
                 .load(users.getProfilepic())
                 .into(holder.binding.profilepic);
         holder.binding.textView76.setText(String.valueOf(users.getProfesion()));
-        holder.binding.price.setText(String.valueOf(users.getCharge()));
+        holder.binding.price.setText(formatPriceAccordingToLocale(users.getCharge()));
         if (users.isVerify()) {
             holder.binding.imageView25.setVisibility(View.VISIBLE);
         } else {
@@ -118,20 +121,19 @@ public class useradapter extends RecyclerView.Adapter<useradapter.viewholder> {
                 context.startActivity(Intent.createChooser(shareIntent, "Share Screenshot"));
             }
         });
-
-
-        holder.binding.profilepic.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=  new Intent(context, ProActivity.class);
-
-                intent.putExtra("name", users.getUserID());
-
-
+                Intent intent=  new Intent(context, oneclassActivity.class);
+                intent.putExtra("Link",users.getStoryid());
+                intent.putExtra("name",users.getUserID());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+
             }
         });
+
+
 
 
     }
@@ -148,6 +150,12 @@ public class useradapter extends RecyclerView.Adapter<useradapter.viewholder> {
             super(itemView);
             binding = TopteaBinding.bind(itemView);
         }
+    }
+    private String formatPriceAccordingToLocale(double price) {
+        // Explicitly set the locale to India
+        Locale indianLocale = new Locale("en", "IN");
+        NumberFormat format = NumberFormat.getCurrencyInstance(indianLocale);
+        return format.format(price);
     }
 
 }

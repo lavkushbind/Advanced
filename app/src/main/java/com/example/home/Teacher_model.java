@@ -5,6 +5,8 @@ public class Teacher_model {
     private String id;
     private String pic;
     private String name;
+    private String video;
+    private  String storyid;
 
     public Teacher_model() {
     }
@@ -13,6 +15,22 @@ public class Teacher_model {
         this.id = id;
         this.pic = pic;
         this.name = name;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public String getStoryid() {
+        return storyid;
+    }
+
+    public void setStoryid(String storyid) {
+        this.storyid = storyid;
     }
 
     public String getId() {

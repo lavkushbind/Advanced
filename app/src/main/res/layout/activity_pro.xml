@@ -8,28 +8,26 @@
     android:layout_height="match_parent"
     android:background="#080B1F"
     android:backgroundTint="#080B1F">
+
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="#080B1F"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="#080B1F"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
 
-
-
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:backgroundTint="#080B1F"
+            android:layout_height="match_parent"
 
-            android:layout_height="wrap_content">
+            android:backgroundTint="#080B1F">
 
 
             <androidx.cardview.widget.CardView
@@ -197,7 +195,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:textColor="#3955EF"
                 android:textSize="14sp"
@@ -256,23 +254,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/twitter" />
 
-            <TextView
-                android:id="@+id/button6"
-                android:layout_width="120dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="16dp"
-
-
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/signbg"
-                android:textColor="@color/white"
-       android:backgroundTint="#3F5BF8"
-                android:gravity="center"
-                android:text="MESSAGE"
-                android:textSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/coverpic" />
-
             <ImageView
                 android:id="@+id/verify"
                 android:layout_width="30dp"
@@ -281,11 +262,18 @@
                 app:layout_constraintBottom_toBottomOf="@+id/profilepic"
                 app:layout_constraintEnd_toEndOf="@+id/profilepic"
                 diagonal:srcCompat="@drawable/verify" />
+
+            <ImageView
+                android:id="@+id/button6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coverpic"
+                app:srcCompat="@android:drawable/stat_notify_chat" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 
 
     </ScrollView>

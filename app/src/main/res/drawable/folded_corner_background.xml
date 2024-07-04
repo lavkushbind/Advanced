@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Main Card Background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#00101C" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Folded Corner Effect -->
+    <item>
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="100%"
+            android:pivotY="0%">
+            <shape android:shape="rectangle">
+                <solid android:color="#051228"/>
+            </shape>
+        </rotate>
+    </item>
+
+</layer-list>

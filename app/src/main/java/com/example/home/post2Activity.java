@@ -48,8 +48,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class post2Activity extends AppCompatActivity {
     FirebaseAuth auth;
@@ -189,8 +191,13 @@ public class post2Activity extends AppCompatActivity {
                                 postmodel postmodel = snapshot.getValue(postmodel.class);
                                 if (postmodel != null) {
                                     binding.NameID.setText(postmodel.getPostdescription());
-                                    binding.PriceID.setText(postmodel.getPrice());
-                                    binding.textView68.setText(String.valueOf(postmodel.getPrice2()));
+//                                    binding.PriceID.setText(postmodel.getPrice());
+//                                    binding.textView68.setText(String.valueOf(postmodel.getPrice2()));
+
+
+
+                                    binding.PriceID.setText(formatPriceAccordingToLocale(Double.parseDouble(postmodel.getPrice())));
+                                    binding.textView68.setText(formatPriceAccordingToLocale(postmodel.getPrice2()));
                                     binding.textview73.setText(String.valueOf(postmodel.getSeats()));
 
 
@@ -255,32 +262,12 @@ public class post2Activity extends AppCompatActivity {
         }
     }
 
-//   @Override
-//    protected void onStart() {
-//        super.onStart();
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        if(exoPlayer== null){
-////            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
-//            }
-//    }
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        releasePlayer();
-//    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        if (exoPlayer.isPlaying()){
-//            exoPlayer.stop();
-//        }
-//    }
-
+    private String formatPriceAccordingToLocale(double price) {
+        // Explicitly set the locale to India
+        Locale indianLocale = new Locale("en", "IN");
+        NumberFormat format = NumberFormat.getCurrencyInstance(indianLocale);
+        return format.format(price);
+    }
 
 
 

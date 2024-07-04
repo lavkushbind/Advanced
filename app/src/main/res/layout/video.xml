@@ -83,7 +83,7 @@
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView58"
+                app:layout_constraintTop_toBottomOf="@+id/price_first"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -100,7 +100,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/vtitle" />
 
             <TextView
-                android:id="@+id/textView58"
+                android:id="@+id/price_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -117,11 +117,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="₹"
                 android:textColor="#4CAF50"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/textView58"
+                app:layout_constraintEnd_toStartOf="@+id/price_first"
                 app:layout_constraintTop_toBottomOf="@+id/exoplayerimage" />
 
             <TextView
@@ -140,7 +139,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="₹"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@+id/price2"
                 app:layout_constraintTop_toBottomOf="@+id/exoplayerimage" />

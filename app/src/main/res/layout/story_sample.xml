@@ -5,9 +5,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
-
+app:cardCornerRadius="10dp"
     android:layout_marginLeft="2dp"
-    android:background="#0A0D1C"
+    android:background="@drawable/card_background"
     android:backgroundTint="#0A0D1C"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -16,6 +16,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/itemm"
+        android:background="@drawable/card_background"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

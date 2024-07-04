@@ -12,6 +12,7 @@ import com.blank_learn.dark.R;
 import com.example.dark.ClasFragment;
 import com.example.dark.aboutFragment;
 import com.example.notification.Notification2Fragment;
+import com.example.payment.OneFragment;
 import com.example.payment.PostFragment;
 import com.example.profile.ProfileFragment;
 import com.example.profile.YourSearchActivity;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.container, new HomFragment());
                         break;
                     case R.id.notificationid:
-                        fragmentTransaction.replace(R.id.container, new Notification2Fragment());
+                        fragmentTransaction.replace(R.id.container, new OneFragment());
                         break;
                     case R.id.search:
                         fragmentTransaction.replace(R.id.container, new YourSearchActivity());

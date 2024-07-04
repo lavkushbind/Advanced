@@ -43,6 +43,8 @@ import java.util.Collections;
 import java.util.List;
 public class HomFragment extends Fragment {
     FragmentHomeBinding binding;
+    private FAQAdapter faqAdapter;
+    private List<FAQ> faqList;
     FirebaseAuth auth;
     FirebaseStorage storage;
     FirebaseDatabase database;
@@ -373,6 +375,21 @@ public class HomFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+
+        faqList = new ArrayList<>();
+        faqList.add(new FAQ("What is your app about?", "Our app provides personalized learning plans with expert guidance and continuous feedback."));
+        faqList.add(new FAQ("How flexible is the scheduling?", "You can schedule sessions at your convenience, ensuring flexibility and ease."));
+        faqList.add(new FAQ("Who are the tutors?", "Our tutors are experts in their fields, providing you with top-notch guidance."));
+        faqList.add(new FAQ("How does the feedback system work?", "You will receive continuous feedback to help you improve and achieve your goals."));
+
+        // Initialize the adapter with context and the FAQ list
+        faqAdapter = new FAQAdapter(getContext(), faqList);
+
+        // Set up the RecyclerView with the adapter and layout manager
+        LinearLayoutManager layoutManagerfaq = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        binding.faqRV.setLayoutManager(layoutManagerfaq);
+        binding.faqRV.setAdapter(faqAdapter);
     }
 
 }

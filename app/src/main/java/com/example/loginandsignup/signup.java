@@ -1,5 +1,4 @@
 package com.example.loginandsignup;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
-
 public class signup extends AppCompatActivity {
     FirebaseAuth auth;
     ActivitySignupBinding binding;
@@ -32,10 +30,6 @@ public class signup extends AppCompatActivity {
     Button signupbtn;
     FirebaseDatabase database;
     TextView textView;
-   // private FirebaseDatabase db = FirebaseDatabase.getInstance();
-   //private DatabaseReference root = db.getReference().child("Users");
-
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +58,13 @@ public class signup extends AppCompatActivity {
               public void onClick(View v) {
                 String email,phone,pass,name;
                 phone=phonebtn.getText().toString();
-
                 email=emailbtn.getText().toString();
                 pass=passbtn.getText().toString();
                 name=namebtn.getText().toString();
-
-            auth.createUserWithEmailAndPassword(email,pass)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task){
-                        if(task.isSuccessful())  {
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {if(task.isSuccessful())  {
                     modelfast users = new modelfast(name,phone,email,pass);
                  String id = task.getResult().getUser().getUid();
                     database.getReference().child("Users").child(id).setValue(users);

@@ -4,8 +4,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="1dp"
-    app:cardBackgroundColor="#080A18"
-    app:cardElevation="11dp"
+    android:background="@drawable/card_background"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="1dp"
+    android:layout_marginTop="5dp"
+    android:backgroundTint="#0A0D1C"
+android:layout_marginLeft="5dp"
     android:outlineAmbientShadowColor="@color/white"
     android:outlineSpotShadowColor="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -13,9 +17,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#0A0D1C"
-        android:backgroundTint="#0A0D1C">
+        android:layout_margin="0dp"
+
+        android:background="@drawable/card_background">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profilepic"
@@ -64,7 +68,7 @@
             android:layout_marginTop="4dp"
             android:gravity="center"
             android:maxLines="1"
-            android:text="TextView"
+android:textColor="@color/white"            android:text="TextView"
             app:layout_constraintEnd_toEndOf="@+id/tname"
             app:layout_constraintStart_toStartOf="@+id/tname"
             app:layout_constraintTop_toBottomOf="@+id/tname" />
@@ -86,7 +90,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹"
+                android:text=""
                 android:textColor="#FF9800"/>
             <TextView
                 android:id="@+id/price"
@@ -108,7 +112,10 @@
             android:id="@+id/textView77"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/post_background"
             android:backgroundTint="#FF9800"
             android:paddingLeft="8dp"
@@ -117,6 +124,7 @@
             android:textColor="#F8F5F5"
             android:textSize="14sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView75" />

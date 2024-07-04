@@ -20,6 +20,7 @@ import com.example.chat.ChatAA;
 import com.example.chat.GroupChat;
 import com.example.home.post2Activity;
 import com.example.loginandsignup.Users;
+import com.example.payment.CurrencyUtils;
 import com.example.payment.postmodel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,8 +32,10 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class profile_post_adapter extends RecyclerView.Adapter<profile_post_adapter.viewHolder>  {
     ArrayList<postmodel> list;
@@ -55,9 +58,14 @@ public class profile_post_adapter extends RecyclerView.Adapter<profile_post_adap
                     .load(postmodel.getPostImage())
                     .into(holder.binding.exoplayerimage);
             holder.binding.Seats.setText(String.valueOf(postmodel.getSeats()));
-            holder.binding.price2.setText(String.valueOf(postmodel.getPrice2()));
 
-            holder.binding.textView58.setText(String.valueOf(postmodel.getPrice()));
+
+            holder.binding.price2.setText(formatPriceAccordingToLocale(postmodel.getPrice2()));
+            holder.binding.priceFirst.setText(formatPriceAccordingToLocale(Double.parseDouble(postmodel.getPrice())));
+
+//            holder.binding.price2.setText(String.valueOf(postmodel.getPrice2()));
+//
+//            holder.binding.priceFirst.setText(String.valueOf(postmodel.getPrice()));
             holder.binding.textView57.setText(postmodel.getAbout());
             holder.binding.vtitle.setText(postmodel.getPostdescription());
             FirebaseDatabase.getInstance()
@@ -151,5 +159,11 @@ public class profile_post_adapter extends RecyclerView.Adapter<profile_post_adap
             super(itemView);
             binding = VideoBinding.bind(itemView);
         }
+    }
+    private String formatPriceAccordingToLocale(double price) {
+        // Explicitly set the locale to India
+        Locale indianLocale = new Locale("en", "IN");
+        NumberFormat format = NumberFormat.getCurrencyInstance(indianLocale);
+        return format.format(price);
     }
 }

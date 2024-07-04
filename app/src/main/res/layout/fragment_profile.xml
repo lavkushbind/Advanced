@@ -175,7 +175,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="96dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/edit_text_background"
             android:padding="10dp"
@@ -184,7 +184,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/uploadbtn" />
 
@@ -290,9 +290,29 @@
             app:layout_constraintTop_toBottomOf="@+id/coverpic"
             app:srcCompat="@drawable/next" />
 
-        <Button
+
+        <TextView
+            android:id="@+id/uploadvid"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/signbg"
+            android:gravity="center"
+            android:backgroundTint="#0B1863"
+            android:text="Apply for 1-1 teacher  "
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_post" />
+
+        <TextView
             android:id="@+id/uploadbtn"
             android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="40dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
@@ -302,7 +322,7 @@
             android:backgroundTint="#2F4EEB"
             android:textSize="18dp"
             android:textColor="@color/white"
-            android:text="UPLOAD YOUR COURSE"
+            android:text="Apply for Teaching "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"

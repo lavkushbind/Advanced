@@ -16,6 +16,25 @@ public class Users {
     private String save;
     private String buy;
     private String phone;
+    private String video;
+    private  String storyid;
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public String getStoryid() {
+        return storyid;
+    }
+
+    public void setStoryid(String storyid) {
+        this.storyid = storyid;
+    }
+
     private  boolean verify;
 
     public boolean isVerify() {

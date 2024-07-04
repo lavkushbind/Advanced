@@ -40,6 +40,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Currency;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -79,7 +80,7 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        getUserLocation();
+//        getUserLocation();
         intent = getIntent();
         postid = intent.getStringExtra("Postid");
         topic = intent.getStringExtra("Topic");
@@ -144,7 +145,7 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
 
                     object.put("theme.color", "#0A2FF8" );
 
-                    object.put("currency", currency);
+                    object.put("currency","INR");
 
                     object.put("amount", amount);
 
@@ -162,50 +163,18 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
 
     }
 
-
-    private void getUserLocation() {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-            return;
-        }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            Geocoder geocoder = new Geocoder(razorpayActivity.this, Locale.getDefault());
-                            try {
-                                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                                if (addresses != null && !addresses.isEmpty()) {
-                                    String country = addresses.get(0).getCountryCode();
-                                    setCurrencyBasedOnCountry(country);
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                });
+    private String getCurrencyCode() {
+        Locale locale = Locale.getDefault();
+        Currency currency = Currency.getInstance(locale);
+        return currency.getCurrencyCode();
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getUserLocation();
-            }
-        }
-    }
-
     private void setCurrencyBasedOnCountry(String country) {
         switch (country) {
-//            case "IN":
-//                currency = "USD";
-//                break;
-            case "US":
+            case "IN":
                 currency = "USD";
+                break;
+            case "US":
+                currency = "INR";
                 break;
             default:
                 currency = "USD";
@@ -213,27 +182,7 @@ public class razorpayActivity extends AppCompatActivity implements PaymentResult
         }
     }
 
-//    private void initiatePayment() {
-//        String samount = String.valueOf(price);
-//        int amount = Math.round(Float.parseFloat(samount) * 100);
-//        Checkout checkout = new Checkout();
-//        checkout.setKeyID("rzp_live_6vd9RApruseTAi");
-//        checkout.setImage(R.drawable.lop);
-//
-//        JSONObject object = new JSONObject();
-//        try {
-//            object.put("name", topic);
-//            object.put("description", "");
-//            object.put("theme.color", "#021785");
-//            object.put("currency", currency);
-//            object.put("amount", amount);
-//            object.put("prefill.contact", phone_num);
-//            object.put("prefill.email", email);
-//            checkout.open(razorpayActivity.this, object);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
 
     @Override
     public void onPaymentSuccess(String s) {

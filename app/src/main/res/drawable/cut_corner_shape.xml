@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Main Card Background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#3a8fd4" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Cut Corner Effect -->
+    <item android:right="0dp" android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#1c3c72" />
+            <path android:pathData="M 100,0 L 100,40 L 60,0 Z" />
+        </shape>
+    </item>
+
+</layer-list>
